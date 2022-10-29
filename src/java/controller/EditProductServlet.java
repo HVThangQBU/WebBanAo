@@ -45,8 +45,7 @@ public class EditProductServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(new Gson().toJson(product));
-        
-//        request.getRequestDispatcher("ManagerProductServlet").forward(request, response);
+    //    request.getRequestDispatcher("ManagerProductServlet").forward(request, response);
         
         
 //        HttpSession session = request.getSession();

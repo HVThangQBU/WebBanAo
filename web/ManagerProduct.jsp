@@ -231,7 +231,7 @@
                 var teol = $(this).data("teol");
                 console.log(teol);
                 $.ajax({
-                    url: '/WebQuanLyBanHang/EditProductServlet',
+                    url: '/WebBanAo/EditProductServlet',
                     type: 'GET',
                     data: {pid: teol},
                 })

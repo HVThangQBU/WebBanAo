@@ -41,8 +41,8 @@
                             <h2>Manage <b>Product</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href="#addAccountModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                            <a href="#deleteallAccountModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <tr>
                             <th>
                                 <span class="custom-checkbox">
-                                    <input type="checkbox" id="selectAll">
+                                    <input type="checkbox" id="selectAll" name="selectAll">
                                     <label for="selectAll"></label>
                                 </span>
                             </th>
@@ -67,7 +67,7 @@
                             <tr>
                                 <td>
                                     <span class="custom-checkbox">
-                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                        <input type="checkbox" id="checkbox1" name="options" value="${account.getId()}">
                                         <label for="checkbox1"></label>
                                     </span>
                                 </td>
@@ -80,8 +80,8 @@
                                 <td>${account.getIsAdmin()}</td>
                                 <td>
 <!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
-                                    <button class="btn-edit" data-teol="${account.getId()}" class="edit" data-toggle="modal" data-target="#editEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                                    <a href="DeleteProductServlet?pid=${account.getId()}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <button class="btn-editAccount" data-teol="${account.getId()}" class="edit" data-toggle="modal" data-target="#editAccountModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
+                                    <a href="#deleteAccountModal" data-teol="${account.getId()}" class="delete deleteAccount" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -104,7 +104,7 @@
 
         </div>
         <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
+        <div id="addAccountModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=addAccount" method="post">
@@ -115,19 +115,28 @@
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>Name</label>
-                                <input name="name" type="text" class="form-control" value="${Product.getPname()}">
+                                <input name="name" type="text" class="form-control" ">
                             </div>
                             <div class="form-group">
                                 <label>PassWord</label>
-                                <input name="password" type="text" class="form-control" value="${Product.getImage()}">
+                                <input name="password" type="text" class="form-control" ">
                             </div>
                             <div class="form-group">
-                                <label>Sell</label>
-                                <input name="sell" type="text" class="form-control" value="${Product.getPrice()}">
+                           
+                                 <td>
+                                    <lable>Sell</lable>
+                                    <input type="radio"  name="sell" value="1">
+                                    <lable>user</lable>
+                                    <input type="radio" name="sell" value="0">
+                                </td>
                             </div>
                             <div class="form-group">
-                                <label>Admin</label>
-                                <textarea name="admin" class="form-control" required>${Product.getTitle()}</textarea>
+                                <td>
+                                    <lable>admin</lable>
+                                    <input type="radio"  name="admin" value="1">
+                                    <lable>user</lable>
+                                    <input type="radio" name="admin" value="0">
+                                </td>
                             </div>
 
                         </div>
@@ -141,48 +150,46 @@
         </div>
         <!-- Edit Modal HTML -->
         
-        <div id="editEmployeeModal" class="modal fade">
+        <div id="editAccountModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="EditProductServlet" method="post">
+                    <form action="ManagerAccountServlet?action=editAccount" method="post">
                        <div class="modal-header">						
                             <h4 class="modal-title">Edit Product</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label>ID</label>
-                                <input  id="input_Id"  type="hidden" name="id" type="text" class="form-control" required>
+                             <div class="form-group">
+                                <label>Id</label>
+                                <input id="input_Id" name="id" type="text" class="form-control" ">
                             </div>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input id="input_name" name="name" type="text" class="form-control" required>
+                                <input id="input_name" name="name" type="text" class="form-control"">
                             </div>
                             <div class="form-group">
-                                <label>Image</label>
-                                <input id="input_image"name="image" type="text" class="form-control" required>
+                                <label>PassWord</label>
+                                <input id="input_password" name="password" type="text" class="form-control"">
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
-                                <input id="input_price" name="price" type="text" class="form-control" required>
+                           
+                                 <td>
+                                    <lable>Sell</lable>
+                                    <input type="radio"  name="sell" value="1">
+                                    <lable>user</lable>
+                                    <input type="radio" name="sell" value="0">
+                                </td>
                             </div>
                             <div class="form-group">
-                                <label>Title</label>
-                                <textarea id="input_title" name="title" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea id="description" name="description" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select id="select_category" name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${categoryList}" var="category">
-                                        <option value="${category.getId()}">${category.getName()}</option>
-                                    </c:forEach>
-                                </select>
+                                <td>
+                                    <lable>admin</lable>
+                                    <input type="radio"  name="admin" value="1">
+                                    <lable>user</lable>
+                                    <input type="radio" name="admin" value="0">
+                                </td>
                             </div>
 
+                        </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                             <input type="submit" id="btn-submit-edit" class="btn btn-info" value="Save">
@@ -192,10 +199,31 @@
             </div>
         </div>
         <!-- Delete Modal HTML -->
-        <div id="deleteEmployeeModal" class="modal fade">
+        <div id="deleteAccountModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form>
+                    <form action="ManagerAccountServlet?action=deleteAccount" method ="post">
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Delete Product</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">					
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div id="deleteallAccountModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="ManagerAccountServlet?action=deleteAllAccount" method ="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Delete Product</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -221,33 +249,58 @@
  
 
         $(document).ready(function(){
-            $('.btn-edit').on('click', function(){
+            $('.btn-editAccount').on('click', function(){
                 //$("#editEmployeeModal").modal();
                 var teol = $(this).data("teol");
                 console.log(teol);
                 $.ajax({
-                    url: '/WebQuanLyBanHang/EditProductServlet',
+                    url: '/WebBanAo/ManagerAccountServlet?action=editAccount',
                     type: 'GET',
-                    data: {pid: teol},
+                    data: {aid: teol},
                 })
                 .done(function(response) {
                     console.log(response);
         
                     $('#input_Id').attr('value', response.id);
-                    $('#input_name').attr('value', response.pname);
+                    $('#input_name').attr('value', response.userName);
    
-                    $('#input_image').attr('value', response.image);
-                    $('#input_price').attr('value', response.price);     
-                    $('#input_title')[0].value=response.title;
-                    $('#description')[0].value=response.description;
-                    $('#category').attr('value', response.category);
-                    var conceptName = $("#select_category option[value=response.category]").attr("selected", true);
-             
+                    $('#input_password').attr('value', response.password);
+//                    $('#input_price').attr('value', response.price);     
+//                    $('#input_title')[0].value=response.title;
+//                    $('#description')[0].value=response.description;
+//                    $('#category').attr('value', response.category);
+//                    var conceptName = $("#select_category option[value=response.category]").attr("selected", true);
+//                    $("input:radio[name=post_pri] :selected").val();
+                     $("input[name=sell][value=" + response.isSell + "]").prop('checked', true);
+                     $("input[name=admin][value=" + response.isSell + "]").prop('checked', true);
+                
+                });
+            });
+            $('.deleteAccount').on('click', function(){
+                //$("#editEmployeeModal").modal();
+                var teol = $(this).data("teol");
+                console.log(teol);
+                $.ajax({
+                    url: '/WebBanAo/ManagerAccountServlet?action=deleteAccount',
+                    type: 'POST',
+                    data: {aid: teol},
+                })
+                .done(function(response) {
+                    console.log(response);
                 
                 });
             });
 
+            
        
+        });
+        $(function() {
+        jQuery("[name=selectAll]").click(function(source) { 
+            checkboxes = jQuery("[name=options]");
+            for(var i in checkboxes){
+                checkboxes[i].checked = source.target.checked;
+            }
+        });
         });
         
  

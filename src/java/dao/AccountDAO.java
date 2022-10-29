@@ -111,4 +111,51 @@ public class AccountDAO {
         } catch (Exception e) {
         }
     }
+       public Account getAccountById(String idString) {
+        String query = "SELECT * FROM webbanhangjsp.account WHERE id = ?";
+        Account account = new Account();
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, idString);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                String passString = resultSet.getString(3);
+                int isSell = resultSet.getInt(4);
+                int isADmin = resultSet.getInt(5);
+                account = new Account(id, name, passString, isSell, isADmin);
+            }
+        } catch (Exception e) {
+        }
+        return account;
+    }
+       
+    public void updateAccount (Account account) {
+        String query ="update webbanhangjsp.account set user_name =?, pass=?, is_sell =?, is_admin =? where id =?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, account.getUserName());
+            preparedStatement.setString(2, account.getPassword());
+            preparedStatement.setInt(3, account.getIsSell());
+            preparedStatement.setInt(4, account.getIsAdmin());
+            preparedStatement.setInt(5, account.getId());
+            preparedStatement.executeUpdate();   
+        } catch (Exception e) {
+        }
+    }
+    public int deleteAccount (String idString) {
+        String quey = "delete from webbanhangjsp.account where id = ?";
+        int n = 0;
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(quey);
+            preparedStatement.setString(1, idString);
+            n = preparedStatement.executeUpdate();
+        } catch (Exception e) {
+        }
+        return n;
+    }
 }

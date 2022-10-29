@@ -4,6 +4,7 @@
  */
 package controller;
 
+import com.google.gson.Gson;
 import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class ManagerAccountServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,12 +56,24 @@ public class ManagerAccountServlet extends HttpServlet {
         if (action == null) {
             AccountDAO accountDAO = new AccountDAO();
             List<Account> accountList = accountDAO.getAllAcount();
-            request.setAttribute("accountList", accountList); 
+            request.setAttribute("accountList", accountList);
             request.getRequestDispatcher("ManagerAccount.jsp").forward(request, response);
+        } else {
+            if (action.equalsIgnoreCase("editAccount")) {
+                String id = request.getParameter("aid");
+                request.setCharacterEncoding("UTF-8");
+                AccountDAO accountDAO = new AccountDAO();
+                Account account = accountDAO.getAccountById(id);
+
+                //request.setAttribute("Product", product);
+                response.setContentType("application/json");
+
+                response.getWriter().write(new Gson().toJson(account));
+                //  response.sendRedirect("ManagerAccountServlet");
+            }
+
         }
-        
-        
-        
+
     }
 
     /**
@@ -75,10 +88,10 @@ public class ManagerAccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-         request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action.equalsIgnoreCase("addAccount")) {
-           
+
             String name = request.getParameter("name");
             String password = request.getParameter("password");
             String sell = request.getParameter("sell");
@@ -87,14 +100,31 @@ public class ManagerAccountServlet extends HttpServlet {
             Account account = new Account(name, password, Integer.parseInt(sell), Integer.parseInt(admin));
             AccountDAO accountDAO = new AccountDAO();
             accountDAO.insertAccount(account);
-            response.sendRedirect("ManagerAccountServlet");
+           
+        }
+        else if (action.equalsIgnoreCase("editAccount")) {
+            String id = request.getParameter("id");
+            String name = request.getParameter("name");
+            String password = request.getParameter("password");
+            String sell = request.getParameter("sell");
+            String admin = request.getParameter("admin");
+
+            Account account = new Account(Integer.parseInt(id), name, password, Integer.parseInt(sell), Integer.parseInt(admin));
+            AccountDAO accountDAO = new AccountDAO();
+            accountDAO.updateAccount(account);
+         //   response.sendRedirect("ManagerAccountServlet");
+        } else if (action.equalsIgnoreCase("deleteAccount")) {
+             String id = request.getParameter("aid");
+             AccountDAO accountDAO = new AccountDAO();
+             int n = accountDAO.deleteAccount(id);
+        } else if (action.equalsIgnoreCase("deleteAllAccount")) {
+           
         }
         
-        if (action.equalsIgnoreCase("editAccount")) {
-            
-        }
-        
+         response.sendRedirect("ManagerAccountServlet");
+
     }
+//tring[] checkedIds = request.getParameterValues("checkedRows");
 
     /**
      * Returns a short description of the servlet.
