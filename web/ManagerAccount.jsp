@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-sm-6">
                             <a href="#addAccountModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteallAccountModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href="#deleteallAccountModal" class="btn btn-danger deleteAllAccount" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
                         </div>
                     </div>
                 </div>
@@ -63,6 +63,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <form action="ManagerAccountServlet?action=deleteAllAccount" method="POST" id="myform">
                     <c:forEach items="${accountList}" var="account">
                             <tr>
                                 <td>
@@ -85,6 +86,7 @@
                                 </td>
                             </tr>
                         </c:forEach>
+                    </form>
                     </tbody>
                 </table>
                 <div class="clearfix">
@@ -223,7 +225,7 @@
         <div id="deleteallAccountModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="ManagerAccountServlet?action=deleteAllAccount" method ="post">
+<!--                    <form action="ManagerAccountServlet?action=deleteAllAccount" method ="post">-->
                         <div class="modal-header">						
                             <h4 class="modal-title">Delete Product</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -234,9 +236,9 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input type="submit" form="myform" class="btn btn-danger" value="Delete">
                         </div>
-                    </form>
+<!--                    </form>-->
                 </div>
             </div>
         </div>
@@ -290,8 +292,7 @@
                 
                 });
             });
-
-            
+           
        
         });
         $(function() {

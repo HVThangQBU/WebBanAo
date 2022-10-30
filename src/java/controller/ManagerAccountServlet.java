@@ -10,6 +10,7 @@ import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,12 +65,8 @@ public class ManagerAccountServlet extends HttpServlet {
                 request.setCharacterEncoding("UTF-8");
                 AccountDAO accountDAO = new AccountDAO();
                 Account account = accountDAO.getAccountById(id);
-
-                //request.setAttribute("Product", product);
                 response.setContentType("application/json");
-
                 response.getWriter().write(new Gson().toJson(account));
-                //  response.sendRedirect("ManagerAccountServlet");
             }
 
         }
@@ -90,6 +87,8 @@ public class ManagerAccountServlet extends HttpServlet {
         //processRequest(request, response);
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
+        
+        
         if (action.equalsIgnoreCase("addAccount")) {
 
             String name = request.getParameter("name");
@@ -118,10 +117,18 @@ public class ManagerAccountServlet extends HttpServlet {
              AccountDAO accountDAO = new AccountDAO();
              int n = accountDAO.deleteAccount(id);
         } else if (action.equalsIgnoreCase("deleteAllAccount")) {
+            String arrayId[] = request.getParameterValues("options");
+            AccountDAO accountDAO = new AccountDAO();
+//            request.setAttribute("arrayId", arrayId);
+            for (String a:arrayId ) {
+                int n = accountDAO.deleteAccount(a);
+            }   
            
-        }
+        } 
+            
         
-         response.sendRedirect("ManagerAccountServlet");
+          response.sendRedirect("ManagerAccountServlet");
+       
 
     }
 //tring[] checkedIds = request.getParameterValues("checkedRows");
