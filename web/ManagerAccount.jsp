@@ -18,7 +18,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+        <title>Quan Ly Tai Khoan</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,7 +38,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Product</b></h2>
+                            <h2>Manage <b>Account</b></h2>
                         </div>
                         <div class="col-sm-6">
                             <a href="#addAccountModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
@@ -63,15 +63,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <form action="ManagerAccountServlet?action=deleteAllAccount" method="POST" id="myform">
+<!--                    <form action="ManagerAccountServlet?action=deleteAllAccount" method="POST" id="myform">-->
+
                     <c:forEach items="${accountList}" var="account">
                             <tr>
+                                
                                 <td>
                                     <span class="custom-checkbox">
                                         <input type="checkbox" id="checkbox1" name="options" value="${account.getId()}">
                                         <label for="checkbox1"></label>
                                     </span>
                                 </td>
+                               
                                 <td>${account.getId()}</td>
                                 <td>${account.getUserName()}</td>
                                 <td>
@@ -82,11 +85,11 @@
                                 <td>
 <!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
                                     <button class="btn-editAccount" data-teol="${account.getId()}" class="edit" data-toggle="modal" data-target="#editAccountModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                                    <a href="#deleteAccountModal" data-teol="${account.getId()}" class="delete deleteAccount" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <button data-teol="${account.getId()}" class="delete deleteAccount" data-toggle="modal" data-target="#deleteAccountModal"><i class="material-icons" data-toggle="tooltip" title="Delete"  >&#xE872;</i></button>
                                 </td>
                             </tr>
                         </c:forEach>
-                    </form>
+<!--                     </form>-->
                     </tbody>
                 </table>
                 <div class="clearfix">
@@ -157,7 +160,7 @@
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=editAccount" method="post">
                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit Product</h4>
+                            <h4 class="modal-title">Edit Account</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -225,7 +228,7 @@
         <div id="deleteallAccountModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-<!--                    <form action="ManagerAccountServlet?action=deleteAllAccount" method ="post">-->
+                    <form action="ManagerAccountServlet?action=deleteAllAccount" method ="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Delete Product</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -238,7 +241,7 @@
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                             <input type="submit" form="myform" class="btn btn-danger" value="Delete">
                         </div>
-<!--                    </form>-->
+                    </form>
                 </div>
             </div>
         </div>
@@ -289,6 +292,7 @@
                 })
                 .done(function(response) {
                     console.log(response);
+                    console.log("xoa thanh cong");
                 
                 });
             });

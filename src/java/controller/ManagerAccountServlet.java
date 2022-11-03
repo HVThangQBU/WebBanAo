@@ -59,7 +59,7 @@ public class ManagerAccountServlet extends HttpServlet {
             List<Account> accountList = accountDAO.getAllAcount();
             request.setAttribute("accountList", accountList);
             request.getRequestDispatcher("ManagerAccount.jsp").forward(request, response);
-        } else {
+        } else 
             if (action.equalsIgnoreCase("editAccount")) {
                 String id = request.getParameter("aid");
                 request.setCharacterEncoding("UTF-8");
@@ -69,7 +69,7 @@ public class ManagerAccountServlet extends HttpServlet {
                 response.getWriter().write(new Gson().toJson(account));
             }
 
-        }
+        
 
     }
 

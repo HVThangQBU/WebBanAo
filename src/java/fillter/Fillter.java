@@ -110,30 +110,30 @@ public class Fillter implements Filter {
         }
 
         doBeforeProcessing(request, response);
-        String url = request.getRequestURI();
-        if (url.startsWith("/WebBanAo/ManagerAccountServlet")) {
-            HttpSession session = request.getSession();
-            Account account = (Account) session.getAttribute("account");
-            if (account != null && account.getId() > 0) {
-                if (account.getIsAdmin() == 1) {
-                    chain.doFilter(servletRequest, servletResponse);
-                }
-            } else {
-                response.sendRedirect("LoginServlet");
-            }
-        } else if (url.startsWith("/WebBanAo/ManagerProductServlet")) {
-            HttpSession session = request.getSession();
-            Account account = (Account) session.getAttribute("account");
-            if (account != null && account.getId() > 0) {
-                if (account.getIsAdmin() == 1 && account.getIsSell() == 1) {
-                    chain.doFilter(servletRequest, servletResponse);
-                }
-            } else {
-                response.sendRedirect("LoginServlet");
-            }
-        } else {
-            chain.doFilter(servletRequest, servletResponse);
-        }
+//        String url = request.getRequestURI();
+//        if (url.startsWith("/WebBanAo/ManagerAccountServlet")) {
+//            HttpSession session = request.getSession();
+//            Account account = (Account) session.getAttribute("account");
+//            if (account != null && account.getId() > 0) {
+//                if (account.getIsAdmin() == 1) {
+//                    chain.doFilter(servletRequest, servletResponse);
+//                }
+//            } else {
+//                response.sendRedirect("LoginServlet");
+//            }
+//        } else if (url.startsWith("/WebBanAo/ManagerProductServlet")) {
+//            HttpSession session = request.getSession();
+//            Account account = (Account) session.getAttribute("account");
+//            if (account != null && account.getId() > 0) {
+//                if (account.getIsAdmin() == 1 && account.getIsSell() == 1) {
+//                    chain.doFilter(servletRequest, servletResponse);
+//                }
+//            } else {
+//                response.sendRedirect("LoginServlet");
+//            }
+//        } else {
+//            chain.doFilter(servletRequest, servletResponse);
+//        }
 
         Throwable problem = null;
         try {

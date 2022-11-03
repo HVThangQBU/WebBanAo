@@ -35,8 +35,8 @@
                             <h2>Manage <b>Product</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href="#"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                            <a href="#" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
                         </div>
                     </div>
                 </div>
@@ -75,8 +75,8 @@
                                     <td>${cart.value.getQuantity()}</td>
                                 <td>
 <!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
-                                    <button class="btn-edit" data-teol="${product.getId()}" class="edit" data-toggle="modal" data-target="#editEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                                    <a href="DeleteProductServlet?pid=${product.getId()}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <button class="btn-edit" data-teol="" class="edit" data-toggle="modal" data-target="#"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
+                                    <a href="" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -98,166 +98,6 @@
             <a href="#"><button type="button" class="btn btn-primary">Back to home</button>
 
         </div>
-        <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="AddProductServlet" method="post">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input name="name" type="text" class="form-control" value="${Product.getPname()}">
-                            </div>
-                            <div class="form-group">
-                                <label>Image</label>
-                                <input name="image" type="text" class="form-control" value="${Product.getImage()}">
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input name="price" type="text" class="form-control" value="${Product.getPrice()}">
-                            </div>
-                            <div class="form-group">
-                                <label>Title</label>
-                                <textarea name="title" class="form-control" required>${Product.getTitle()}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea name="description" class="form-control" required>${Product.getDescription()}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${categoryList}" var="category">
-                                        <option value="${category.getId()}">${category.getName()}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Edit Modal HTML -->
-        
-        <div id="editEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="EditProductServlet" method="post">
-                       <div class="modal-header">						
-                            <h4 class="modal-title">Edit Product</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>ID</label>
-                                <input  id="input_Id"  type="hidden" name="id" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input id="input_name" name="name" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Image</label>
-                                <input id="input_image"name="image" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input id="input_price" name="price" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Title</label>
-                                <textarea id="input_title" name="title" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea id="description" name="description" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select id="select_category" name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${categoryList}" var="category">
-                                        <option class="category-option" value="${category.getId()}">${category.getName()}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" id="btn-submit-edit" class="btn btn-info" value="Save">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Delete Modal HTML -->
-        <div id="deleteEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Delete Product</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        
-        
-    <script src="js/manager.js" type="text/javascript"></script>
-    
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!--    <script>
- 
-
-        $(document).ready(function(){
-            $('.btn-edit').on('click', function(){
-                //$("#editEmployeeModal").modal();
-                var teol = $(this).data("teol");
-                console.log(teol);
-                $.ajax({
-                    url: '/WebBanAo/EditProductServlet',
-                    type: 'GET',
-                    data: {pid: teol},
-                })
-                .done(function(response) {
-                    console.log(response.cateId);
-        
-                    $('#input_Id').attr('value', response.id);
-                    $('#input_name').attr('value', response.pname);
-   
-                    $('#input_image').attr('value', response.image);
-                    $('#input_price').attr('value', response.price);     
-                    $('#input_title')[0].value=response.title;
-                    $('#description')[0].value=response.description;
-                    $('#category').attr('value', response.cateId);
-                    //var conceptName = $("#select_category option[value=response.category]").attr("selected", true);
-                    $("select[name=category] option[value=" + response.cateId +"]").attr('selected','selected');    
-                
-                });
-            });
-
-       
-        });
-        
- 
-    </script>-->
+     
 </body>
 </html>
