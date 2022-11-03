@@ -9,7 +9,7 @@
 <!--begin of menu-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/WebQuanLyBanHang/home">Shoes</a>
+        <a class="navbar-brand" href="/WebBanAo/home">Shoes</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,7 +50,7 @@
                         </button>
                     </div>
                 </div>
-                <a class="btn btn-success btn-sm ml-3" href="show">
+                <a class="btn btn-success btn-sm ml-3" href="AddtoCartServlet">
                     <i class="fa fa-shopping-cart"></i> Cart
                     <span class="badge badge-light">3</span>
                 </a>
@@ -58,10 +58,10 @@
         </div>
     </div>
 </nav>
-<section class="jumbotron text-center">
+<!--<section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">Siêu thị giày chất lượng cao</h1>
         <p class="lead text-muted mb-0">Uy tín tạo nên thương hiệu với hơn 10 năm cung cấp các sản phầm giày nhập từ Trung Quốc</p>
     </div>
-</section>
+</section>-->
 <!--end of menu-->

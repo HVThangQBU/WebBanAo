@@ -51,7 +51,7 @@
                                                 <p class="btn btn-danger btn-block">${product.price} $</p>
                                             </div>
                                             <div class="col">
-                                                <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                                                <a href="DetailProductServlet?productid=${product.id}" class="btn btn-success btn-block">Add to cart</a>
                                             </div>
                                         </div>
                                     </div>

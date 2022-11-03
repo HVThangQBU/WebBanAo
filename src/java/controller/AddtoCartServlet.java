@@ -4,25 +4,29 @@
  */
 package controller;
 
-import dao.CategoryDAO;
 import dao.ProductDAO;
-import entity.Category;
+import entity.Cart;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HOANG_THANG
  */
-@WebServlet(name = "DetailProductServlet", urlPatterns = {"/DetailProductServlet"})
-public class DetailProductServlet extends HttpServlet {
+@WebServlet(name = "AddtoCartServlet", urlPatterns = {"/AddtoCartServlet"})
+public class AddtoCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,21 +40,7 @@ public class DetailProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String proId = request.getParameter("productid");
-        
-        ProductDAO productDAO = new ProductDAO();
-        Product product = productDAO.getProductsById(proId);
-        request.setAttribute("detailProduct", product);
-        
-        product = productDAO.getLastProduct();
-        request.setAttribute("product", product);
-        
-        CategoryDAO categoryDAO = new CategoryDAO();
-        List<Category> categoryList = categoryDAO.getAllCategory();
-        request.setAttribute("categoryList", categoryList);
-        
-        
-        request.getRequestDispatcher("DetailProduct.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,7 +55,40 @@ public class DetailProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        HttpSession session = request.getSession();
+        List<Product> productList = new ArrayList<>();
+        String proId = request.getParameter("productid");
+        ProductDAO productDAO = new ProductDAO();
+        Product product = productDAO.getProductsById(proId);
+        Object obj = session.getAttribute("cart");
+      
+        if (obj == null) {
+            Cart cart = new Cart();
+            cart.setProduct(product);
+            cart.setQuantity(1);
+            cart.setUnitPrice(product.getPrice());
+            Map<String, Cart> map = new HashMap<>();
+            map.put(proId, cart);
+            session.setAttribute("cart", map);
+        } else{
+            Map<String, Cart> map = (Map<String, Cart>) obj;
+            Cart cart = map.get(proId);
+            System.out.println(cart);
+            if (cart == null) {
+                cart = new Cart();
+                cart.setProduct(product);
+                cart.setQuantity(1);
+                cart.setUnitPrice(product.getPrice());
+                map.put(proId, cart);
+            } else {
+                cart.setQuantity(cart.getQuantity() + 1);
+            }
+
+            session.setAttribute("cart", map);
+        }               
+
+        request.getRequestDispatcher("AddtoCart.jsp").forward(request, response);
     }
 
     /**
@@ -79,7 +102,11 @@ public class DetailProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String proId = request.getParameter("productid");
+        ProductDAO productDAO = new ProductDAO();
+        Product product = productDAO.getProductsById(proId);
+
     }
 
     /**
