@@ -1,0 +1,24 @@
+order : 
+ - id nguoi mua
+- id nguoi ban
+- id product
+- so luong
+- tong price
+- status
+- dia chi
+- so dien thoai
+- ngay mua 
+- ngay giao 
+
+account:
+- user
+- pass
+- is_sell
+- is_admin
+
+product:
+- name
+- image
+- price
+- title
+

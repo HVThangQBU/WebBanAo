@@ -101,7 +101,7 @@
 
                                         </div> <!-- row.// -->
                                         <hr>
-                                        <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
+                                        <a href="OrderServlet?productid=${detailProduct.id}" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
                                         <a href="AddtoCartServlet?productid=${detailProduct.id}" class="btn btn-lg btn-outline-primary text-uppercase add-to-cart"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
                                     </article> <!-- card-body.// -->
                                 </aside> <!-- col.// -->

@@ -56,37 +56,39 @@ public class AddtoCartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+
         HttpSession session = request.getSession();
+
         List<Product> productList = new ArrayList<>();
         String proId = request.getParameter("productid");
         ProductDAO productDAO = new ProductDAO();
         Product product = productDAO.getProductsById(proId);
         Object obj = session.getAttribute("cart");
-      
-        if (obj == null) {
-            Cart cart = new Cart();
-            cart.setProduct(product);
-            cart.setQuantity(1);
-            cart.setUnitPrice(product.getPrice());
-            Map<String, Cart> map = new HashMap<>();
-            map.put(proId, cart);
-            session.setAttribute("cart", map);
-        } else{
-            Map<String, Cart> map = (Map<String, Cart>) obj;
-            Cart cart = map.get(proId);
-            System.out.println(cart);
-            if (cart == null) {
-                cart = new Cart();
+        if (proId != null) {
+            if (obj == null) {
+                Cart cart = new Cart();
                 cart.setProduct(product);
                 cart.setQuantity(1);
                 cart.setUnitPrice(product.getPrice());
+                Map<String, Cart> map = new HashMap<>();
                 map.put(proId, cart);
+                session.setAttribute("cart", map);
             } else {
-                cart.setQuantity(cart.getQuantity() + 1);
-            }
+                Map<String, Cart> map = (Map<String, Cart>) obj;
+                Cart cart = map.get(proId);
+                if (cart == null) {
+                    cart = new Cart();
+                    cart.setProduct(product);
+                    cart.setQuantity(1);
+                    cart.setUnitPrice(product.getPrice());
+                    map.put(proId, cart);
+                } else {
+                    cart.setQuantity(cart.getQuantity() + 1);
+                }
 
-            session.setAttribute("cart", map);
-        }               
+                session.setAttribute("cart", map);
+            }
+        }
 
         request.getRequestDispatcher("AddtoCart.jsp").forward(request, response);
     }
@@ -103,10 +105,45 @@ public class AddtoCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String proId = request.getParameter("productid");
-        ProductDAO productDAO = new ProductDAO();
-        Product product = productDAO.getProductsById(proId);
+        String action = request.getParameter("action");
 
+        if (action.equalsIgnoreCase("updatequantity")) {
+            String id = request.getParameter("id");
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            ProductDAO productDAO = new ProductDAO();
+            Product product = productDAO.getProductsById(id);
+
+            HttpSession session = request.getSession();
+            Object obj = session.getAttribute("cart");
+
+            if (obj == null) {
+                Cart cart = new Cart();
+                cart.setProduct(product);
+                cart.setQuantity(quantity);
+                cart.setUnitPrice(product.getPrice());
+                Map<String, Cart> map = new HashMap<>();
+                map.put(id, cart);
+                session.setAttribute("cart", map);
+            } else {
+                Map<String, Cart> map = (Map<String, Cart>) obj;
+                Cart cart = map.get(id);
+                if (cart == null) {
+                    cart = new Cart();
+                    cart.setProduct(product);
+                    cart.setQuantity(quantity);
+                    cart.setUnitPrice(product.getPrice());
+                    map.put(id, cart);
+                } else if (quantity == 0) {
+                    cart = map.remove(id);
+                } else {
+                    cart.setQuantity(quantity);
+                }
+
+                session.setAttribute("cart", map);
+            }
+
+        }
+        request.getRequestDispatcher("AddtoCart.jsp").forward(request, response);
     }
 
     /**

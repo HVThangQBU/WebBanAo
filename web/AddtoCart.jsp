@@ -58,28 +58,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${sessionScope.cart}" var="cart">
-                            <tr>
+                        <c:if test="${sessionScope.cart != null}">
+                            <c:forEach items="${sessionScope.cart}" var="cart">
+                                <tr>
+                                    <td>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                            <label for="checkbox1"></label>
+                                        </span>
+                                    </td>  
+                                    <td>${cart.key}</td>
+                                    <td>${cart.value.getProduct().getPname()}</td>
+                                    <td>
+                                        <img src="${cart.value.getProduct().getImage()}">
+                                    </td>
+                                    <td>${cart.value.getUnitPrice()} $</td>
+                            <form action="AddtoCartServlet?action=updatequantity" method="POST">
+                                <td><input name="quantity" type="number" value="${cart.value.getQuantity()}"> </td>
+                                <input type="hidden" name="id" value="${cart.value.getProduct().getId()}">
                                 <td>
-                                    <span class="custom-checkbox">
-                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                        <label for="checkbox1"></label>
-                                    </span>
-                                </td>  
-                                <td>${cart.key}</td>
-                                <td>${cart.value.getProduct().getPname()}</td>
-                                <td>
-                                    <img src="${cart.value.getProduct().getImage()}">
+                                    <!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
+                                    <button class="btn btn-success" type="submit">Cap nhat </button>
                                 </td>
-                                <td>${cart.value.getUnitPrice()} $</td>
-                                    <td>${cart.value.getQuantity()}</td>
-                                <td>
-<!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
-                                    <button class="btn-edit" data-teol="" class="edit" data-toggle="modal" data-target="#"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                                    <a href="" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                </td>
+                            </form>
+                            <td><a href="OrderServlet">Thanh toan</a></td>
                             </tr>
                         </c:forEach>
+                    </c:if>
                     </tbody>
                 </table>
                 <div class="clearfix">
@@ -98,6 +103,6 @@
             <a href="#"><button type="button" class="btn btn-primary">Back to home</button>
 
         </div>
-     
-</body>
+
+    </body>
 </html>
