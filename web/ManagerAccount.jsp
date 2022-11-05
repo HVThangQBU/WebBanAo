@@ -63,7 +63,7 @@
                         </tr>
                     </thead>
                     <tbody>
-<!--                    <form action="ManagerAccountServlet?action=deleteAllAccount" method="POST" id="myform">-->
+                    <form action="ManagerAccountServlet?action=deleteAllAccount" method="POST" id="myform">
 
                     <c:forEach items="${accountList}" var="account">
                             <tr>
@@ -74,7 +74,7 @@
                                         <label for="checkbox1"></label>
                                     </span>
                                 </td>
-                               
+                                  
                                 <td>${account.getId()}</td>
                                 <td>${account.getUserName()}</td>
                                 <td>
@@ -84,12 +84,12 @@
                                 <td>${account.getIsAdmin()}</td>
                                 <td>
 <!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
-                                    <button class="btn-editAccount" data-teol="${account.getId()}" class="edit" data-toggle="modal" data-target="#editAccountModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                                    <button data-teol="${account.getId()}" class="delete deleteAccount" data-toggle="modal" data-target="#deleteAccountModal"><i class="material-icons" data-toggle="tooltip" title="Delete"  >&#xE872;</i></button>
+                                    <button type="button" class="btn-editAccount" data-teol="${account.getId()}" class="edit" data-toggle="modal" data-target="#editAccountModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
+                                    <button type="button" data-teol="${account.getId()}" class="delete deleteAccount" data-toggle="modal" data-target="#deleteAccountModal"><i class="material-icons" data-toggle="tooltip" title="Delete"  >&#xE872;</i></button>
                                 </td>
                             </tr>
                         </c:forEach>
-<!--                     </form>-->
+                  </form>
                     </tbody>
                 </table>
                 <div class="clearfix">

@@ -45,7 +45,7 @@
                         <tr>
                             <th>
                                 <span class="custom-checkbox">
-                                    <input type="checkbox" id="selectAll">
+                                    <input type="checkbox" id="selectAll" name="selectAll">
                                     <label for="selectAll"></label>
                                 </span>
                             </th>
@@ -63,10 +63,12 @@
                                 <tr>
                                     <td>
                                         <span class="custom-checkbox">
-                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                            <input type="checkbox" id="checkbox1" name="options" value="${cart.key}">
                                             <label for="checkbox1"></label>
                                         </span>
                                     </td>  
+
+
                                     <td>${cart.key}</td>
                                     <td>${cart.value.getProduct().getPname()}</td>
                                     <td>
@@ -103,6 +105,19 @@
             <a href="#"><button type="button" class="btn btn-primary">Back to home</button>
 
         </div>
+        <script src="js/manager.js" type="text/javascript"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(function () {
+                jQuery("[name=selectAll]").click(function (source) {
+                    checkboxes = jQuery("[name=options]");
+                    for (var i in checkboxes) {
+                        checkboxes[i].checked = source.target.checked;
+                    }
+                    console.log("sda", checkboxes)
+                });
+            });
+        </script>
     </body>
 </html>
