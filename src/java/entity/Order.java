@@ -10,32 +10,32 @@ package entity;
  */
 public class Order {
     private int id_order;
-    private Account account;
-    private Product product;
-    private int isSell;
-    private int quantity;
-    private float totalPrice;
+    private int accountId;
     private String address;
     private String phoneNumber;
-    private String dateOrder;
-    private String dateDelivary;
-    private int status;
-    
+    private String email;
+     private float totalPrice;
     public Order() {}
 
-    public Order(int id_order, Account account, Product product, int isSell, int quantity, float totalPrice, String address, String phoneNumber, String dateOrder, String dateDelivary, int status) {
+    public Order(int id_order, int accountId, String address, String phoneNumber, String email, float totalPrice) {
         this.id_order = id_order;
-        this.account = account;
-        this.product = product;
-        this.isSell = isSell;
-        this.quantity = quantity;
-        this.totalPrice = totalPrice;
+        this.accountId = accountId;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.dateOrder = dateOrder;
-        this.dateDelivary = dateDelivary;
-        this.status = status;
+        this.email = email;
+        this.totalPrice = totalPrice;
     }
+
+    public Order(int accountId, String address, String phoneNumber, String email, float totalPrice) {
+        this.accountId = accountId;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.totalPrice = totalPrice;
+    }
+
+   
+    
 
     public int getId_order() {
         return id_order;
@@ -45,44 +45,12 @@ public class Order {
         this.id_order = id_order;
     }
 
-    public Account getAccount() {
-        return account;
+    public int getAccount() {
+        return accountId;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getIsSell() {
-        return isSell;
-    }
-
-    public void setIsSell(int isSell) {
-        this.isSell = isSell;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public float getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setAccount(int accountId) {
+        this.accountId = accountId;
     }
 
     public String getAddress() {
@@ -101,31 +69,30 @@ public class Order {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getDateOrder() {
-        return dateOrder;
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setDateOrder(String dateOrder) {
-        this.dateOrder = dateOrder;
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public String getDateDelivary() {
-        return dateDelivary;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setDateDelivary(String dateDelivary) {
-        this.dateDelivary = dateDelivary;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
-    public int getStatus() {
-        return status;
+    public String getEmail() {
+        return email;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
-    
-    
-    
+
+  
 }

@@ -4,8 +4,11 @@
  */
 package controller;
 
+import dao.OrderDAO;
 import dao.ProductDAO;
+import entity.Account;
 import entity.Cart;
+import entity.Order;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,7 +43,7 @@ public class AddtoCartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,38 +61,40 @@ public class AddtoCartServlet extends HttpServlet {
         //processRequest(request, response);
 
         HttpSession session = request.getSession();
-
-        List<Product> productList = new ArrayList<>();
-        String proId = request.getParameter("productid");
-        ProductDAO productDAO = new ProductDAO();
-        Product product = productDAO.getProductsById(proId);
-        Object obj = session.getAttribute("cart");
-        if (proId != null) {
-            if (obj == null) {
-                Cart cart = new Cart();
-                cart.setProduct(product);
-                cart.setQuantity(1);
-                cart.setUnitPrice(product.getPrice());
-                Map<String, Cart> map = new HashMap<>();
-                map.put(proId, cart);
-                session.setAttribute("cart", map);
-            } else {
-                Map<String, Cart> map = (Map<String, Cart>) obj;
-                Cart cart = map.get(proId);
-                if (cart == null) {
-                    cart = new Cart();
+        String action = request.getParameter("action");
+        if (action == null) {
+            List<Product> productList = new ArrayList<>();
+            String proId = request.getParameter("productid");
+            ProductDAO productDAO = new ProductDAO();
+            Product product = productDAO.getProductsById(proId);
+            Object obj = session.getAttribute("cart");
+            if (proId != null) {
+                if (obj == null) {
+                    Cart cart = new Cart();
                     cart.setProduct(product);
                     cart.setQuantity(1);
                     cart.setUnitPrice(product.getPrice());
+                    Map<String, Cart> map = new HashMap<>();
                     map.put(proId, cart);
+                    session.setAttribute("cart", map);
                 } else {
-                    cart.setQuantity(cart.getQuantity() + 1);
+                    Map<String, Cart> map = (Map<String, Cart>) obj;
+                    Cart cart = map.get(proId);
+                    if (cart == null) {
+                        cart = new Cart();
+                        cart.setProduct(product);
+                        cart.setQuantity(1);
+                        cart.setUnitPrice(product.getPrice());
+                        map.put(proId, cart);
+                    } else {
+                        cart.setQuantity(cart.getQuantity() + 1);
+                    }
+                    
+                    session.setAttribute("cart", map);
                 }
-
-                session.setAttribute("cart", map);
             }
         }
-
+        session.getAttribute("account");
         request.getRequestDispatcher("AddtoCart.jsp").forward(request, response);
     }
 
@@ -105,17 +110,18 @@ public class AddtoCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
-
+        
         if (action.equalsIgnoreCase("updatequantity")) {
             String id = request.getParameter("id");
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             ProductDAO productDAO = new ProductDAO();
             Product product = productDAO.getProductsById(id);
-
+            
             HttpSession session = request.getSession();
             Object obj = session.getAttribute("cart");
-
+            
             if (obj == null) {
                 Cart cart = new Cart();
                 cart.setProduct(product);
@@ -138,10 +144,26 @@ public class AddtoCartServlet extends HttpServlet {
                 } else {
                     cart.setQuantity(quantity);
                 }
-
+                
                 session.setAttribute("cart", map);
             }
-
+            
+        }
+        if (action.equalsIgnoreCase("checkInfo")) {
+            String id = request.getParameter("id");
+            String address = request.getParameter("address");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+            Order order = new Order();
+            int total = 0;
+            HttpSession session = request.getSession();
+            Map<String, Cart> map = (Map<String, Cart>) session.getAttribute("cart");
+            for (Map.Entry<String, Cart> entry : map.entrySet()) {
+                total += entry.getValue().getQuantity() * entry.getValue().getProduct().getPrice(); 
+            }
+            order = new Order(Integer.parseInt(id),address, email, phone, total);
+            OrderDAO orderDAO = new OrderDAO();
+            int n = orderDAO.insetOrder(order);
         }
         request.getRequestDispatcher("AddtoCart.jsp").forward(request, response);
     }

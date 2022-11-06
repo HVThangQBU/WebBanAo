@@ -83,24 +83,6 @@
                                                     ${detailProduct.description}
                                                 </p></dd>
                                         </dl>
-
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <dl class="param param-inline">
-                                                    <dt>Quantity: </dt>
-                                                    <dd>
-                                                        <select class="form-control form-control-sm" name="isAmount" style="width:70px;">
-                                                            <c:forEach var = "i" begin = "1" end = "10" >
-                                                            <option value = "${i}"> ${i} </option>
-                                                        </c:forEach>
-                                                        </select>
-                                                    </dd>
-                                                </dl>  <!-- item-property .// -->
-                                            </div> <!-- col.// -->
-
-                                        </div> <!-- row.// -->
-                                        <hr>
                                         <a href="OrderServlet?productid=${detailProduct.id}" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
                                         <a href="AddtoCartServlet?productid=${detailProduct.id}" class="btn btn-lg btn-outline-primary text-uppercase add-to-cart"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
                                     </article> <!-- card-body.// -->

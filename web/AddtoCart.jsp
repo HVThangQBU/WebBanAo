@@ -11,7 +11,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+        <title>Cart</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -89,35 +89,35 @@
                     </c:if>
                     </tbody>
                 </table>
-                <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                    </ul>
+                <div>
+                    <form action="AddtoCartServlet?action=checkInfo" method="post" class="form-signup">
+                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Thong tin Dat Hang</h1>
+                        <input type="hidden" name="id" value="${sessionScope.account.getId()}">
+                        <input name="name" type="text"  class="form-control" placeholder="Ten tai khoan" required="" autofocus="" value="${sessionScope.account.getUserName()}">
+                        <input name="address" type="text" class="form-control" placeholder="Nhap Dia chi" required autofocus="">
+                        <input name="email" type="email" class="form-control" placeholder="Nhap Email" required autofocus="">
+                        <input name="phone" type="text"  class="form-control" placeholder="Nhap So Dien Thoai" required autofocus="">
+
+                        <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i>Dat Hang</button>
+                        <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+                    </form>
                 </div>
+
+
             </div>
-            <a href="#"><button type="button" class="btn btn-primary">Back to home</button>
+            <script src="js/manager.js" type="text/javascript"></script>
 
-        </div>
-        <script src="js/manager.js" type="text/javascript"></script>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script>
-            $(function () {
-                jQuery("[name=selectAll]").click(function (source) {
-                    checkboxes = jQuery("[name=options]");
-                    for (var i in checkboxes) {
-                        checkboxes[i].checked = source.target.checked;
-                    }
-                    console.log("sda", checkboxes)
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script>
+                $(function () {
+                    jQuery("[name=selectAll]").click(function (source) {
+                        checkboxes = jQuery("[name=options]");
+                        for (var i in checkboxes) {
+                            checkboxes[i].checked = source.target.checked;
+                        }
+                        console.log("sda", checkboxes)
+                    });
                 });
-            });
-        </script>
+            </script>
     </body>
 </html>
