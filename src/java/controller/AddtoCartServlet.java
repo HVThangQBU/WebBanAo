@@ -5,10 +5,12 @@
 package controller;
 
 import dao.OrderDAO;
+import dao.OrderDetailDAO;
 import dao.ProductDAO;
 import entity.Account;
 import entity.Cart;
 import entity.Order;
+import entity.Order_detail;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -164,6 +166,18 @@ public class AddtoCartServlet extends HttpServlet {
             order = new Order(Integer.parseInt(id),address, email, phone, total);
             OrderDAO orderDAO = new OrderDAO();
             int n = orderDAO.insetOrder(order);
+            for (Map.Entry<String, Cart> entry : map.entrySet()) {
+//                Object key = entry.getKey();
+//                Object val = entry.getValue();
+                Order_detail order_detail; 
+                order_detail = new Order_detail(n, entry.getValue().getProduct().getId(), entry.getValue().getQuantity(), 
+                      (float)entry.getValue().getProduct().getPrice() * entry.getValue().getQuantity());
+                OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+                orderDetailDAO.insertOrderDetail(order_detail); 
+            }
+            session.setAttribute("cart", null);
+            response.sendRedirect("OderSuccess.jsp");
+            
         }
         request.getRequestDispatcher("AddtoCart.jsp").forward(request, response);
     }

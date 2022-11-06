@@ -24,6 +24,14 @@ public class Order_detail {
         this.price = price;
     }
 
+    public Order_detail(int orderId, int productId, int quantity, float price) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.price = price;
+    }
+    
+
     public int getId() {
         return id;
     }
