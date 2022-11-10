@@ -4,28 +4,23 @@
  */
 package controller;
 
-import dao.OrderDAO;
-import entity.Account;
-import entity.Order;
-import entity.OrderStatusEnum;
+import dao.OrderDetailDAO;
+import entity.Order_detail;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HOANG_THANG
  */
-@WebServlet(name = "OrderServlet", urlPatterns = {"/OrderServlet"})
-public class OrderServlet extends HttpServlet {
+@WebServlet(name = "OrderDetailServlet", urlPatterns = {"/OrderDetailServlet"})
+public class OrderDetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,19 +49,13 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //    processRequest(request, response);
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-        String accountId = String.valueOf(account.getId());
-        OrderDAO orderDAO = new OrderDAO();
-        List<Order> listOrder = orderDAO.getAllOrderByAccountId(accountId);
-        request.setAttribute("listOrder", listOrder);
-//        OrderStatusEnum orderStatusEnum = new OrderStatusEnum();
-        Map<String, String> map = OrderStatusEnum.getOrderStatusMap();
-        request.setAttribute("mapStatus", map);
-        
-        
-        request.getRequestDispatcher("OderSuccess.jsp").forward(request, response);
+        // processRequest(request, response);
+        OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+        String idOrder = request.getParameter("idOrder");
+        List<Order_detail> order_detailList = orderDetailDAO.getOrderDetailById(idOrder);
+        request.setAttribute("order_detailList", order_detailList);
+        request.getRequestDispatcher("DetailOrder.jsp").forward(request, response);
+
     }
 
     /**
@@ -80,7 +69,7 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //    processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

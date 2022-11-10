@@ -9,13 +9,19 @@ package entity;
  * @author HOANG_THANG
  */
 public class Order {
+
     private int id_order;
     private int accountId;
     private String address;
     private String phoneNumber;
     private String email;
-     private float totalPrice;
-    public Order() {}
+    private float totalPrice;
+    private int orderStatus;
+    private String dateOrder;
+    private String shippedDateString;
+    private int sellId;
+    public Order() {
+    }
 
     public Order(int id_order, int accountId, String address, String phoneNumber, String email, float totalPrice) {
         this.id_order = id_order;
@@ -34,7 +40,30 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-   
+    public Order(int accountId, String address, String phoneNumber, String email, float totalPrice, int orderStatus, String dateOrder, String shippedDateString) {
+        this.accountId = accountId;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.totalPrice = totalPrice;
+        this.orderStatus = orderStatus;
+        this.dateOrder = dateOrder;
+        this.shippedDateString = shippedDateString;
+      
+    }
+
+    public Order(int id_order, int accountId, String address, String phoneNumber, String email, float totalPrice, int orderStatus, String dateOrder, String shippedDateString) {
+        this.id_order = id_order;
+        this.accountId = accountId;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.totalPrice = totalPrice;
+        this.orderStatus = orderStatus;
+        this.dateOrder = dateOrder;
+        this.shippedDateString = shippedDateString;
+    }
+    
     
 
     public int getId_order() {
@@ -92,7 +121,38 @@ public class Order {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getDateOrder() {
+        return dateOrder;
+    }
+
+    public void setDateOrder(String dateOrder) {
+        this.dateOrder = dateOrder;
+    }
+
+    public String getShippedDateString() {
+        return shippedDateString;
+    }
+
+    public void setShippedDateString(String shippedDateString) {
+        this.shippedDateString = shippedDateString;
+    }
+
+    public int getSellId() {
+        return sellId;
+    }
+
+    public void setSellId(int sellId) {
+        this.sellId = sellId;
+    }
     
 
-  
 }

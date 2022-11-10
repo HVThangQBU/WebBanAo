@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,7 +24,8 @@ public class OrderDAO {
     ResultSet resultSet = null;
 
     public int insetOrder(Order order) {
-        String query = "insert into webbanhangjsp.order (id_account, address, phone_number,email, total) values(?,?,?,?,?)";
+        String query = "insert into webbanhangjsp.order (id_account, address, phone_number,email, total,order_status,date_order,shipped_date)"
+                + " values(?,?,?,?,?,?,?,?)";
         try {
             connection = new DBContext().getConnection();
             preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -31,6 +34,9 @@ public class OrderDAO {
             preparedStatement.setString(3, order.getPhoneNumber());
             preparedStatement.setString(4, order.getEmail());
             preparedStatement.setFloat(5, order.getTotalPrice());
+            preparedStatement.setInt(6, order.getOrderStatus());
+            preparedStatement.setString(7, order.getDateOrder());
+            preparedStatement.setString(8, order.getShippedDateString());
             preparedStatement.executeUpdate();
             try {
                 resultSet = preparedStatement.getGeneratedKeys();
@@ -42,10 +48,39 @@ public class OrderDAO {
             } catch (Exception e) {
                 return 0;
             }
-            
+
         } catch (Exception e) {
         }
         return 0;
+    }
+
+    public List<Order> getAllOrderByAccountId(String accountId) {
+        String query = "SELECT * FROM webbanhangjsp.order where id_account = ?";
+        List<Order> list = new ArrayList<>();
+
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, accountId);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                int accId = resultSet.getInt(2);
+                String address = resultSet.getString(3);
+                String phone = resultSet.getString(4);
+                String email = resultSet.getString(5);
+                float total = resultSet.getFloat(6);
+                int orderStatus = resultSet.getInt(7);
+                String dateOrder = resultSet.getString(8);
+                String shippedDate = resultSet.getString(9);
+                Order order = new Order();
+                order = new Order(id, accId, address, phone, email, total, orderStatus, dateOrder, shippedDate);
+                list.add(order);
+
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 
 }

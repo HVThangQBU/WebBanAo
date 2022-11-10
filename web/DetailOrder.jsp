@@ -43,33 +43,29 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Order Id</th>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Email</th>       
-                            <th>Total Price</th>
-                            <th>Order_status</th>
-                            <th>date order</th>
-                            <th>shipped date</th>
-                            <th>Xem</th>
+                            <th>Id Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>       
+                            
                         </tr>
                     </thead>
                     <tbody>
 
-                        <c:forEach items="${listOrder}" var="order">
+                        <c:forEach items="${order_detailList}" var="orderDetail">
                             <tr>
-                                <td>${order.getId_order()}</td>
-                                <td>
+                                <td>${orderDetail.getId()}</td>
+<!--                                <td>
                                     <c:if test="${order.getAccount() == sessionScope.account.getId()}">
                                         <c:out value="${sessionScope.account.getUserName()}"></c:out>
                                     </c:if>
-                                </td>
-                                <td>${order.getAddress()}</td>
-                                <td>${order.getPhoneNumber()}</td>
-                                <td>${order.getEmail()}</td>
-                                <td>${order.getTotalPrice()}</td>
-                                <td>
+                                </td>-->
+                                <td>${orderDetail.getOrderId()}</td>
+                                <td>${orderDetail.getProductId()}</td>
+                                <td>${orderDetail.getQuantity()}</td>
+                                <td>${orderDetail.getPrice()}</td>
+<!--                                <td>
                                     <c:forEach var="type" items="${mapStatus}">
                                         <c:if test="${order.getOrderStatus() == type.key}">
                                             ${type.value}
@@ -78,7 +74,7 @@
                                 </td>
                                 <td>${order.getDateOrder()}</td>
                                 <td>${order.getShippedDateString()}</td>
-                                <td><a href="OrderDetailServlet?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>
+                                <td><a href="OrderServlet?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>-->
                             </tr>
 
                         </c:forEach>

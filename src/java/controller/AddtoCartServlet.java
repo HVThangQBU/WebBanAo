@@ -14,6 +14,7 @@ import entity.Order_detail;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -158,12 +159,19 @@ public class AddtoCartServlet extends HttpServlet {
             String phone = request.getParameter("phone");
             Order order = new Order();
             int total = 0;
+            int isSell = 0;
             HttpSession session = request.getSession();
             Map<String, Cart> map = (Map<String, Cart>) session.getAttribute("cart");
             for (Map.Entry<String, Cart> entry : map.entrySet()) {
                 total += entry.getValue().getQuantity() * entry.getValue().getProduct().getPrice(); 
+              
             }
-            order = new Order(Integer.parseInt(id),address, email, phone, total);
+           
+            int orderStatus = 1;
+            String dateOrder = java.time.LocalDate.now().toString();
+            String shippedDate = java.time.LocalDate.now().plusDays(5).toString();
+         
+            order = new Order(Integer.parseInt(id),address, phone, email, total,orderStatus, dateOrder, shippedDate);
             OrderDAO orderDAO = new OrderDAO();
             int n = orderDAO.insetOrder(order);
             for (Map.Entry<String, Cart> entry : map.entrySet()) {
@@ -176,8 +184,8 @@ public class AddtoCartServlet extends HttpServlet {
                 orderDetailDAO.insertOrderDetail(order_detail); 
             }
             session.setAttribute("cart", null);
-            response.sendRedirect("OderSuccess.jsp");
-            
+            response.sendRedirect("OrderServlet");
+//            
         }
         request.getRequestDispatcher("AddtoCart.jsp").forward(request, response);
     }
