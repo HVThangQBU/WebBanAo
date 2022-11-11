@@ -72,6 +72,8 @@ public class AccountDAO {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, userString);
             preparedStatement.setString(2, passString);
+            preparedStatement.setInt(3, 0);
+            preparedStatement.setInt(4, 0);
             preparedStatement.executeUpdate();
             
         } catch (Exception e) {
