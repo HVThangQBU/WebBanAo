@@ -48,7 +48,7 @@
                             <th>Id Product</th>
                             <th>Quantity</th>
                             <th>Price</th>       
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -56,46 +56,53 @@
                         <c:forEach items="${order_detailList}" var="orderDetail">
                             <tr>
                                 <td>${orderDetail.getId()}</td>
-<!--                                <td>
-                                    <c:if test="${order.getAccount() == sessionScope.account.getId()}">
-                                        <c:out value="${sessionScope.account.getUserName()}"></c:out>
-                                    </c:if>
-                                </td>-->
+                                <!--                                <td>
+                                <%--<c:if test="${order.getAccount() == sessionScope.account.getId()}">--%>
+                                    <%--<c:out value="${sessionScope.account.getUserName()}"></c:out>--%>
+                                <%--</c:if>--%>
+                            </td>-->
                                 <td>${orderDetail.getOrderId()}</td>
-                                <td>${orderDetail.getProductId()}</td>
-                                <td>${orderDetail.getQuantity()}</td>
-                                <td>${orderDetail.getPrice()}</td>
-<!--                                <td>
-                                    <c:forEach var="type" items="${mapStatus}">
-                                        <c:if test="${order.getOrderStatus() == type.key}">
-                                            ${type.value}
-                                        </c:if>
-                                    </c:forEach>                                   
-                                </td>
-                                <td>${order.getDateOrder()}</td>
-                                <td>${order.getShippedDateString()}</td>
-                                <td><a href="OrderServlet?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>-->
-                            </tr>
+                                <td> 
+                                    <c:forEach items="${productList}" var="product">
+                                        <c:if test="${orderDetail.getProductId() == product.getId()}">
+                                            <c:out value="${product.getPname()}"></c:out>
+                                        </c:if>                                       
+                                     </c:forEach>
+                                  
+                                 </td>
+                                            <td>${orderDetail.getQuantity()}</td>
+                                            <td>${orderDetail.getPrice()}</td>
+                                            <!--                                <td>
+                                            <c:forEach var="type" items="${mapStatus}">
+                                                <c:if test="${order.getOrderStatus() == type.key}">
+                                                    ${type.value}
+                                                </c:if>
+                                            </c:forEach>                                   
+                                        </td>
+                                        <td>${order.getDateOrder()}</td>
+                                        <td>${order.getShippedDateString()}</td>
+                                        <td><a href="OrderServlet?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>-->
+                                        </tr>
 
-                        </c:forEach>
-                    </tbody>
-                </table>  
-            </div>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>  
+                            </div>
 
-        </div>
-        <script src="js/manager.js" type="text/javascript"></script>
+                        </div>
+                        <script src="js/manager.js" type="text/javascript"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script>
-            $(function () {
-                jQuery("[name=selectAll]").click(function (source) {
-                    checkboxes = jQuery("[name=options]");
-                    for (var i in checkboxes) {
-                        checkboxes[i].checked = source.target.checked;
-                    }
-                    console.log("sda", checkboxes)
-                });
-            });
-        </script>
-    </body>
-</html>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                        <script>
+                            $(function () {
+                                jQuery("[name=selectAll]").click(function (source) {
+                                    checkboxes = jQuery("[name=options]");
+                                    for (var i in checkboxes) {
+                                        checkboxes[i].checked = source.target.checked;
+                                    }
+                                    console.log("sda", checkboxes)
+                                });
+                            });
+                        </script>
+                    </body>
+                </html>
