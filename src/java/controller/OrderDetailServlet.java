@@ -4,18 +4,24 @@
  */
 package controller;
 
+import dao.OrderDAO;
 import dao.OrderDetailDAO;
 import dao.ProductDAO;
+import entity.Account;
+import entity.Order;
+import entity.OrderStatusEnum;
 import entity.Order_detail;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -53,10 +59,17 @@ public class OrderDetailServlet extends HttpServlet {
             throws ServletException, IOException {
         // processRequest(request, response);
         OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+        OrderDAO orderDAO = new OrderDAO();
         ProductDAO productDAO = new ProductDAO();
         String idOrder = request.getParameter("idOrder");
         List<Order_detail> order_detailList = orderDetailDAO.getOrderDetailById(idOrder);
         List<Product> productList = productDAO.getAllProducts();
+        Order order = orderDAO.getOrderByOrderId(idOrder);
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        Map<String, String> map = OrderStatusEnum.getOrderStatusMap();
+        request.setAttribute("mapStatus", map);
+        request.setAttribute("order", order);
         request.setAttribute("productList", productList);
         request.setAttribute("order_detailList", order_detailList);
         request.getRequestDispatcher("DetailOrder.jsp").forward(request, response);

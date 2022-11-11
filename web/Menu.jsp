@@ -33,6 +33,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="LogoutServlet">Logout</a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="OrderServlet">DonHang</a>
+                    </li>
+                    
                 </c:if>
                 <c:if test="${sessionScope.account == null }">
                     <li class="nav-item">

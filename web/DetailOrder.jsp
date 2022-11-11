@@ -58,7 +58,7 @@
                                 <td>${orderDetail.getId()}</td>
                                 <!--                                <td>
                                 <%--<c:if test="${order.getAccount() == sessionScope.account.getId()}">--%>
-                                    <%--<c:out value="${sessionScope.account.getUserName()}"></c:out>--%>
+                                <%--<c:out value="${sessionScope.account.getUserName()}"></c:out>--%>
                                 <%--</c:if>--%>
                             </td>-->
                                 <td>${orderDetail.getOrderId()}</td>
@@ -67,42 +67,77 @@
                                         <c:if test="${orderDetail.getProductId() == product.getId()}">
                                             <c:out value="${product.getPname()}"></c:out>
                                         </c:if>                                       
-                                     </c:forEach>
-                                  
-                                 </td>
-                                            <td>${orderDetail.getQuantity()}</td>
-                                            <td>${orderDetail.getPrice()}</td>
-                                            <!--                                <td>
-                                            <c:forEach var="type" items="${mapStatus}">
-                                                <c:if test="${order.getOrderStatus() == type.key}">
-                                                    ${type.value}
-                                                </c:if>
-                                            </c:forEach>                                   
-                                        </td>
-                                        <td>${order.getDateOrder()}</td>
-                                        <td>${order.getShippedDateString()}</td>
-                                        <td><a href="OrderServlet?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>-->
-                                        </tr>
+                                    </c:forEach>                                  
+                                </td>
+                                <td>${orderDetail.getQuantity()}</td>
+                                <td>${orderDetail.getPrice()}</td>
 
-                                        </c:forEach>
-                                    </tbody>
-                                </table>  
-                            </div>
+                                <!--                                <td>
+                                                             
+                            </td>
+                           
+                            <td><a href="OrderServlet?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>-->
+                            </tr>
 
-                        </div>
-                        <script src="js/manager.js" type="text/javascript"></script>
 
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                        <script>
-                            $(function () {
-                                jQuery("[name=selectAll]").click(function (source) {
-                                    checkboxes = jQuery("[name=options]");
-                                    for (var i in checkboxes) {
-                                        checkboxes[i].checked = source.target.checked;
-                                    }
-                                    console.log("sda", checkboxes)
-                                });
-                            });
-                        </script>
-                    </body>
-                </html>
+                        </c:forEach>
+                    </tbody>
+                    
+                </table>  
+                  <table class="table table-striped table-hover">
+                     <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Total</th>  
+                            <th>Order Status</th>
+                            <th>Date Order</th>
+                            <th>Shipped Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> 
+                                <c:if test="${order.getAccount() == sessionScope.account.getId()}">
+                                <c:out value="${sessionScope.account.getUserName()}"></c:out>
+                                </c:if>
+                            </td>
+                            <td>${order.getAddress()}</td>
+                            <td>${order.getPhoneNumber()}</td>
+                            <td>${order.getEmail()}</td>
+                            <td>${order.getTotalPrice()}</td>
+                            <td>
+                                 <c:forEach var="type" items="${mapStatus}">
+                                    <c:if test="${order.getOrderStatus() == type.key}">
+                                        <c:out value="${type.value}"></c:out>
+                                    </c:if>
+                                </c:forEach>     
+                            </td>
+                             <td>${order.getDateOrder()}</td>
+                            <td>${order.getShippedDateString()}</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+
+        </div>
+        <script src="js/manager.js" type="text/javascript"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(function () {
+                jQuery("[name=selectAll]").click(function (source) {
+                    checkboxes = jQuery("[name=options]");
+                    for (var i in checkboxes) {
+                        checkboxes[i].checked = source.target.checked;
+                    }
+                    console.log("sda", checkboxes)
+                });
+            });
+        </script>
+    </body>
+</html>
