@@ -134,7 +134,15 @@ public class Fillter implements Filter {
 //        } else {
 //            chain.doFilter(servletRequest, servletResponse);
 //        }
-
+         HttpSession session = request.getSession();            
+         Account account = (Account) session.getAttribute("account");
+         if (account != null ) {
+               chain.doFilter(servletRequest, servletResponse);
+         }
+//         else {
+//             response.sendRedirect("LoginServlet");
+//         }
+      
         Throwable problem = null;
         try {
             chain.doFilter(request, response);

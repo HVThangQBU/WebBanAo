@@ -6,10 +6,12 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
 <!--begin of menu-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/WebBanAo/home">Shoes</a>
+        <a class="navbar-brand" href="/WebBanAo/home">Áo </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,11 +22,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="ManagerAccountServlet">Manager Account</a>
                 </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="OrderServlet">Manager Order</a>
+                </li>
                 </c:if>
                 <c:if test="${sessionScope.account.getIsSell() == 1}">
                 <li class="nav-item">
                     <a class="nav-link" href="ManagerProductServlet">Manager Product</a>
                 </li>
+               
                 </c:if>
                 <c:if test="${sessionScope.account != null}">
                     <li class="nav-item">
@@ -34,7 +40,7 @@
                         <a class="nav-link" href="LogoutServlet">Logout</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="OrderServlet">DonHang</a>
+                        <a class="nav-link" href="OrderServlet">Order</a>
                     </li>
                     
                 </c:if>

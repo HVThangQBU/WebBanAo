@@ -4,14 +4,19 @@
  */
 package controller;
 
+import com.google.gson.Gson;
 import dao.AccountDAO;
 import dao.OrderDAO;
+import dao.OrderDetailDAO;
+import dao.ProductDAO;
 import entity.Account;
 import entity.Order;
 import entity.OrderStatusEnum;
+import entity.Order_detail;
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -25,8 +30,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author HOANG_THANG
  */
-@WebServlet(name = "OrderServlet", urlPatterns = {"/OrderServlet"})
-public class OrderServlet extends HttpServlet {
+@WebServlet(name = "ManagerOrderDetail", urlPatterns = {"/ManagerOrderDetail"})
+public class ManagerOrderDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,30 +60,64 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //    processRequest(request, response);
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-        String accountId = String.valueOf(account.getId());
-        if (account.getIsAdmin() == 1) {
-             OrderDAO orderDAO = new OrderDAO();
-            List<Order> listOrder = orderDAO.getAllOrder();
-            request.setAttribute("listOrder", listOrder);
-            Map<String, String> map = OrderStatusEnum.getOrderStatusMap();
-            request.setAttribute("mapStatus", map);
-        
+        //processRequest(request, response);
+       
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        String action = request.getParameter("action");
+        if (action == null) {
+            OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+            OrderDAO orderDAO = new OrderDAO();
+            ProductDAO productDAO = new ProductDAO();
+            String idOrder = request.getParameter("idOrder");
+            List<Order_detail> order_detailList = orderDetailDAO.getOrderDetailById(idOrder);
+            request.setAttribute("order_detailList", order_detailList);
+
+            List<Product> productList = productDAO.getAllProducts();
+            request.setAttribute("productList", productList);
+
+            Order order = orderDAO.getOrderByOrderId(idOrder);
+            request.setAttribute("order", order);
+            //        HttpSession session = request.getSession();
+            //        Account account = (Account) session.getAttribute("account");
             AccountDAO accountDAO = new AccountDAO();
-             List<Account> account1 = accountDAO.getAllAcount();
-            request.setAttribute("account1", account1);
-        }
-        else {
-             OrderDAO orderDAO = new OrderDAO();
-            List<Order> listOrder = orderDAO.getAllOrderByAccountId(accountId);
-            request.setAttribute("listOrder", listOrder);
-//        OrderStatusEnum orderStatusEnum = new OrderStatusEnum();
+            List<Account> accountList = accountDAO.getAllAcount();
+            request.setAttribute("accountList", accountList);
             Map<String, String> map = OrderStatusEnum.getOrderStatusMap();
             request.setAttribute("mapStatus", map);
+            request.getRequestDispatcher("ManagerOrderDetail.jsp").forward(request, response);
+        } else if (action.equalsIgnoreCase("editOrder")) {
+        
+           
+            // get orderbyOrderId
+            String aid = request.getParameter("aid");
+            OrderDAO orderDAO = new OrderDAO();
+            Order order = orderDAO.getOrderByOrderId(aid);
+
+            int acc = order.getAccount();
+            AccountDAO accountDAO = new AccountDAO();
+            Account account = accountDAO.getAccountById(String.valueOf(acc));
+            String nameAcc = account.getUserName();
+
+            Map<String, String> map = OrderStatusEnum.getOrderStatusMap();
+            request.setAttribute("mapStatus", map);
+             String status = null;
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                 if (order.getOrderStatus() == Integer.parseInt( entry.getKey())){
+                      status = entry.getValue();                   
+                 }   
+            }
+
+            Map<String, Object> map1 = new HashMap<>();
+            map1.put("order", order);
+            map1.put("name", account);
+            map1.put("status", status);
+        
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(map1));
         }
-        request.getRequestDispatcher("OderSuccess.jsp").forward(request, response);
+
     }
 
     /**
@@ -92,19 +131,7 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //    processRequest(request, response);
-        String action = request.getParameter("action");
-        
-        if (action.equalsIgnoreCase("updateStt")) {
-           String id = request.getParameter("idOrder2");
-           String stat = request.getParameter("sttust");
-            OrderDAO orderDAO = new OrderDAO();
-            orderDAO.updateStatusOrderByIdOrder(id, stat);
-            
-            
-        }
-        response.sendRedirect("OrderServlet");
-        
+        //processRequest(request, response);
     }
 
     /**

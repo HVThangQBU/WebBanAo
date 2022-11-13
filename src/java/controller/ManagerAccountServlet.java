@@ -67,6 +67,7 @@ public class ManagerAccountServlet extends HttpServlet {
                 Account account = accountDAO.getAccountById(id);
                 response.setContentType("application/json");
                 response.getWriter().write(new Gson().toJson(account));
+                
             }
 
         

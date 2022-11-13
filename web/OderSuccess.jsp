@@ -60,27 +60,68 @@
                         <c:forEach items="${listOrder}" var="order">
                             <tr>
                                 <td>${order.getId_order()}</td>
-                                <td>
-                                    <c:if test="${order.getAccount() == sessionScope.account.getId()}">
-                                        <c:out value="${sessionScope.account.getUserName()}"></c:out>
-                                    </c:if>
+                                <td>                                                                                               
+                                    <c:choose>
+                                        <c:when test="${sessionScope.account.getIsAdmin() == 1}">
+                                            <c:forEach items="${account1}" var="acc">
+                                                <c:if test="${order.getAccount() == acc.getId()}">
+                                                    <c:out value="${acc.getUserName()}"></c:out>
+                                                 </c:if>
+                                            </c:forEach>
+                                        </c:when>
+                                        <c:otherwise>
+                                          <c:if test="${order.getAccount() == sessionScope.account.getId()}">
+                                                <c:out value="${sessionScope.account.getUserName()}"></c:out>
+                                        </c:if>
+                                         </c:otherwise>
+                                    </c:choose>
+                                    
                                 </td>
                                 <td>${order.getAddress()}</td>
                                 <td>${order.getPhoneNumber()}</td>
                                 <td>${order.getEmail()}</td>
                                 <td>${order.getTotalPrice()}</td>
-                                <td>
-                                    <c:forEach var="type" items="${mapStatus}">
-                                        <c:if test="${order.getOrderStatus() == type.key}">
-                                            ${type.value}
-                                        </c:if>
-                                    </c:forEach>                                   
+                                <form action="OrderServlet?action=updateStt" method="POST">
+                                
+                                      <c:choose>
+                                        <c:when test="${sessionScope.account.getIsAdmin() == 1}">
+                                            
+                                         <td>
+                                                  <input type="hidden" name="idOrder2" value="${order.getId_order()}">
+                                                       <select id="status" name="sttust" class="form-select" aria-label="Default select example">
+                                                        <c:forEach var="type" items="${mapStatus}">
+                                                            <option value="${type.key}" ${order.getOrderStatus() == type.key ? "selected": ""}>${type.value}</option>                                                                                                                                         
+                                                      </c:forEach>                                                 
+                                                        </select>
+                                         </td>   
+                                         
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td>
+                                            <c:forEach var="type" items="${mapStatus}">
+                                                <c:if test="${order.getOrderStatus() == type.key}">
+                                                    ${type.value}
+                                                </c:if>
+                                    </c:forEach>  
+                                                </td>
+                                         </c:otherwise>
+                                    </c:choose>     
                                 </td>
+                                
                                 <td>${order.getDateOrder()}</td>
                                 <td>${order.getShippedDateString()}</td>
-                                <td><a href="OrderDetailServlet?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>
+                               
+                                   <c:choose>
+                                        <c:when test="${sessionScope.account.getIsAdmin() == 1}">
+                                            <td> <button class="btn btn-success" type="submit">Cap nhat </button></td>
+                                              <td><a href="ManagerOrderDetail?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                         <td><a href="OrderDetailServlet?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>
+                                         </c:otherwise>
+                                    </c:choose>  
+                                        </form>
                             </tr>
-
                         </c:forEach>
                     </tbody>
                 </table>  

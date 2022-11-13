@@ -19,7 +19,6 @@ public class Order {
     private int orderStatus;
     private String dateOrder;
     private String shippedDateString;
-    private int sellId;
     public Order() {
     }
 
@@ -146,13 +145,6 @@ public class Order {
         this.shippedDateString = shippedDateString;
     }
 
-    public int getSellId() {
-        return sellId;
-    }
-
-    public void setSellId(int sellId) {
-        this.sellId = sellId;
-    }
     
 
 }
