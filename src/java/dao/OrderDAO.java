@@ -112,13 +112,13 @@ public class OrderDAO {
 
     public Order getOrderByOrderId(String idOrder) {
         String query = "SELECT * FROM webbanhangjsp.order where id_order = ?";
-        Order order = new Order();
+       
         try {
             connection = new DBContext().getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, idOrder);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 int accId = resultSet.getInt(2);
                 String address = resultSet.getString(3);
@@ -128,11 +128,12 @@ public class OrderDAO {
                 int orderStatus = resultSet.getInt(7);
                 String dateOrder = resultSet.getString(8);
                 String shippedDate = resultSet.getString(9);
-                order = new Order(id, accId, address, phone, email, total, orderStatus, dateOrder, shippedDate);
+                 Order order  = new Order(id, accId, address, phone, email, total, orderStatus, dateOrder, shippedDate);
+                   return order;
             }
         } catch (Exception e) {
         }
-        return order;
+        return null;
     }
     public void updateStatusOrderByIdOrder(String idOrder, String status) {
         String query = "update webbanhangjsp.order set order_status = ?  where id_order = ?";
@@ -144,6 +145,21 @@ public class OrderDAO {
             preparedStatement.executeUpdate();
         } catch (Exception e) {
         } 
+    }
+    public void updateInfoOrderByIdOrder(String addr,String phone, String email, int statusOr, String shipperDay, int id ) {
+        String query = "update webbanhangjsp.order set address =?, phone_number =?, email =?,shipped_date=?, order_status =?  where id_order =?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, addr);
+            preparedStatement.setString(2,phone);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4,shipperDay );
+            preparedStatement.setInt(5,statusOr);
+            preparedStatement.setInt(6, id);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 
 }

@@ -62,9 +62,8 @@ public class ManagerOrderDetail extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
        
-        request.setCharacterEncoding("UTF-8");
+  //      request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
@@ -87,33 +86,32 @@ public class ManagerOrderDetail extends HttpServlet {
             Map<String, String> map = OrderStatusEnum.getOrderStatusMap();
             request.setAttribute("mapStatus", map);
             request.getRequestDispatcher("ManagerOrderDetail.jsp").forward(request, response);
-        } else if (action.equalsIgnoreCase("editOrder")) {
-        
-           
+        } else if (action.equalsIgnoreCase("editOrder")) { 
             // get orderbyOrderId
             String aid = request.getParameter("aid");
             OrderDAO orderDAO = new OrderDAO();
             Order order = orderDAO.getOrderByOrderId(aid);
-
+            // get name account
             int acc = order.getAccount();
             AccountDAO accountDAO = new AccountDAO();
             Account account = accountDAO.getAccountById(String.valueOf(acc));
             String nameAcc = account.getUserName();
-
+            // map status
             Map<String, String> map = OrderStatusEnum.getOrderStatusMap();
             request.setAttribute("mapStatus", map);
              String status = null;
+             // get name status order
             for (Map.Entry<String, String> entry : map.entrySet()) {
                  if (order.getOrderStatus() == Integer.parseInt( entry.getKey())){
                       status = entry.getValue();                   
                  }   
             }
-
+             // map order name, status
             Map<String, Object> map1 = new HashMap<>();
             map1.put("order", order);
             map1.put("name", account);
             map1.put("status", status);
-        
+            
             response.setContentType("application/json");
             response.getWriter().write(new Gson().toJson(map1));
         }
@@ -132,6 +130,20 @@ public class ManagerOrderDetail extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+         OrderDAO orderDAO = new OrderDAO();
+          String action = request.getParameter("action");
+          if (action.equalsIgnoreCase("editOrder")) {
+              String id = request.getParameter("idO");
+              String addr = request.getParameter("address");
+              String phone = request.getParameter("phone");
+              String email = request.getParameter("email");
+              String statusOr = request.getParameter("statusOr");
+              String shipperDay = request.getParameter("shipperDay");
+//              Order order = new Order(Integer.parseInt(id) , addr, phone, email, Integer.parseInt(statusOr), shipperDay);
+             
+              orderDAO.updateInfoOrderByIdOrder(addr,phone,email,Integer.parseInt(statusOr), shipperDay,Integer.parseInt(id));   
+          }
+            response.sendRedirect("OrderServlet");
     }
 
     /**

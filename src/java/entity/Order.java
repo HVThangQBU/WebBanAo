@@ -62,6 +62,16 @@ public class Order {
         this.dateOrder = dateOrder;
         this.shippedDateString = shippedDateString;
     }
+
+    public Order(int id_order, String address, String phoneNumber, String email, int orderStatus, String shippedDateString) {
+        this.id_order = id_order;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.orderStatus = orderStatus;
+        this.shippedDateString = shippedDateString;
+    }
+    
     
     
 

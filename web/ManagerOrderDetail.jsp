@@ -178,36 +178,36 @@
                             <h4 class="modal-title">Edit Order</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">
+                          <div class="modal-body">
                             <div class="form-group">
                                 <label>Id</label>
-                                <input id="input_Id" name="id" type="text" class="form-control" ">
+                                <input id="input_Id" name="idO" type="text" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input id="input_name" name="name" type="text" class="form-control"">
+                                <input id="input_name" name="name" type="text" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
-                                <input id="input_address" name="name" type="text" class="form-control"">
+                                <input id="input_address" name="address" type="text" class="form-control" >
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input id="input_phone" name="name" type="text" class="form-control"">
+                                <input id="input_phone" name="phone" type="text" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label>Email</label>
-                                <input id="input_email" name="name" type="email" class="form-control"">
+                                <input id="input_email" name="email" type="email" class="form-control"">
                             </div>
 
                             <div class="form-group">
                                 <label>Total Price</label>
-                                <input id="input_total" name="name" type="text" class="form-control"">
+                                <input id="input_total" name="name" type="text" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
-                                <select id="status" name="category" class="form-select" aria-label="Default select example">
+                                <select id="status" name="statusOr" class="form-select" aria-label="Default select example">
                                       <c:forEach var="type" items="${mapStatus}">
                                              <option value="${type.key}">${type.value}</option>                                                                                                                                         
                                     </c:forEach>                                                 
@@ -215,11 +215,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Order Day</label>
-                                <input id="input_orderdate" name="name" type="date" class="form-control"">
+                                <input id="input_orderdate" name="orderDay" type="date" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Shipped Date</label>
-                                <input id="input_shipdate" name="name" type="date" class="form-control"">
+                                <input id="input_shipdate" name="shipperDay" type="date" class="form-control"">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -276,33 +276,37 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>
          $(document).ready(function () {
-                 $('.btn-editOrder').on('click', function () {
-                     console.log(1);
-                    //$("#editEmployeeModal").modal();
-                           var teol = $(this).data("teol");
-                           $.ajax({
-                           url: '/WebBanAo/ManagerOrderDetail?action=editOrder',
-                           type: 'GET',                        
-                           data: {aid: teol},
-                            })
-                           .done(function (response) {
-                                     console.log(response);
-                                     console.log(response.name.userName);
-                                    //console.log(response.id_order);
-                                    $('#input_Id').attr('value', response.order.id_order);
-                                    $('#input_name').attr('value', response.name.userName);
-                                    $('#input_address').attr('value',response.order.address);
-                                    $('#input_phone').attr('value',response.order.phoneNumber);
-                                    $('#input_email').attr('value',response.order.email);
-                                    $('#input_total').attr('value',response.order.totalPrice);
-                                    $('select.form-select').val(response.order.orderStatus);
-                                    $('#input_orderdate').attr('value',response.order.dateOrder);
-                                    $('#input_shipdate').attr('value',response.order.shippedDateString);
-                                  
-                                   
-                                    
-                            });          
-                  });
+             $('.btn-editOrder').on('click', function () {
+                //$("#editEmployeeModal").modal();
+               var valueId = $(this).data("teol");
+
+                  $.ajax({
+                  type: "GET",
+                  datatype: 'json',
+                  url: "/WebBanAo/ManagerOrderDetail?action=editOrder",
+                  data: {
+                      aid : valueId
+                  }
+                  ,
+                  success: function(response){
+                    console.log(response);
+                        $('#input_Id').attr('value', response.order.id_order);
+                        $('#input_name').attr('value', response.name.userName);
+                        $('#input_address').attr('value',response.order.address);
+                        $('#input_phone').attr('value',response.order.phoneNumber);
+                        $('#input_email').attr('value',response.order.email);
+                        $('#input_total').attr('value',response.order.totalPrice);
+                        $('select.form-select').val(response.order.orderStatus);
+                        $('#input_orderdate').attr('value',response.order.dateOrder);
+                        $('#input_shipdate').attr('value',response.order.shippedDateString);
+                  },
+                  error: function(response){
+                    console.log("error");
+                  }
+                })
+
+             })
+                 
          });
         </script>
     </body>
