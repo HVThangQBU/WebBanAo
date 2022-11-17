@@ -30,6 +30,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="ManagerProductServlet">Manager Product</a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="ManagerCategoryServlet">Manager Category</a>
+                </li>
                
                 </c:if>
                 <c:if test="${sessionScope.account != null}">
