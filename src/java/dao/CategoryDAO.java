@@ -59,6 +59,7 @@ public class CategoryDAO {
             connection = new DBContext().getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,category_name);
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
         }
     }
