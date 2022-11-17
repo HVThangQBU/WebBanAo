@@ -41,20 +41,21 @@ public class ManagerProductServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         int id = account.getId();
-        ProductDAO productDAO = new ProductDAO();
-        List<Product> productList = productDAO.getProductsBySellId(String.valueOf(id));
-        
-        request.setAttribute("productList", productList);
-        
         CategoryDAO categoryDAO = new CategoryDAO();
-        List<Category> categoryList = categoryDAO.getAllCategory();
-        request.setAttribute("categoryList", categoryList);
-        
+        ProductDAO productDAO = new ProductDAO();
+
+        if (account.getIsAdmin() == 1) {
+            List<Product> productList = productDAO.getAllProducts();
+            request.setAttribute("productList", productList);     
+        }
+        else {
+         List<Product> productList = productDAO.getProductsBySellId(String.valueOf(id));
+        request.setAttribute("productList", productList);
+        }
+         List<Category> categoryList = categoryDAO.getAllCategory();
+        request.setAttribute("categoryList", categoryList); 
         request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
-        
-        
-       
-   
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -33,6 +33,7 @@
             }
         </style>
     <body>
+          <a class="navbar-brand" href="/WebBanAo/home">Áo</a>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -105,7 +106,7 @@
                     </ul>
                 </div>
             </div>
-            <a href="#"><button type="button" class="btn btn-primary">Back to home</button>
+            <a href="/WebBanAo/home"><button type="button" class="btn btn-primary">Back to home</button>
 
         </div>
         <!-- Edit Modal HTML -->
@@ -209,7 +210,7 @@
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=deleteAccount" method ="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Product</h4>
+                            <h4 class="modal-title">Delete Account</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
@@ -230,7 +231,7 @@
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=deleteAllAccount" method ="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Product</h4>
+                            <h4 class="modal-title">Delete Account  </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
@@ -270,12 +271,7 @@
                     $('#input_name').attr('value', response.userName);
    
                     $('#input_password').attr('value', response.password);
-//                    $('#input_price').attr('value', response.price);     
-//                    $('#input_title')[0].value=response.title;
-//                    $('#description')[0].value=response.description;
-//                    $('#category').attr('value', response.category);
-//                    var conceptName = $("#select_category option[value=response.category]").attr("selected", true);
-//                    $("input:radio[name=post_pri] :selected").val();
+
                      $("input[name=sell][value=" + response.isSell + "]").prop('checked', true);
                      $("input[name=admin][value=" + response.isSell + "]").prop('checked', true);
                 
