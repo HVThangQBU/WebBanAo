@@ -149,6 +149,7 @@ public class AddtoCartServlet extends HttpServlet {
                 }
                 
                 session.setAttribute("cart", map);
+                   request.getRequestDispatcher("AddtoCart.jsp").forward(request, response);
             }
             
         }
@@ -187,7 +188,7 @@ public class AddtoCartServlet extends HttpServlet {
             response.sendRedirect("OrderServlet");
 //            
         }
-        request.getRequestDispatcher("AddtoCart.jsp").forward(request, response);
+             
     }
 
     /**

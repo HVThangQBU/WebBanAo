@@ -53,7 +53,7 @@ public class ManagerProductServlet extends HttpServlet {
         request.setAttribute("productList", productList);
         }
          List<Category> categoryList = categoryDAO.getAllCategory();
-        request.setAttribute("categoryList", categoryList); 
+        request.setAttribute("categoryList", categoryList);     
         request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
 
     }

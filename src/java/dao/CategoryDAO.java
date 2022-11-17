@@ -53,4 +53,13 @@ public class CategoryDAO {
 //        }
 //    }
     
+    public void insertCategory(String category_name) {
+        String query = " insert into webbanhangjsp.category (cname) values (?)";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,category_name);
+        } catch (Exception e) {
+        }
+    }
 }

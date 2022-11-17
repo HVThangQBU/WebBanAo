@@ -27,7 +27,7 @@
             }
         </style>
     <body>
-        <a href="/WebBanAo/home"">Áo</a>
+               <a class="navbar-brand" href="/WebBanAo/home">Áo</a>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -94,7 +94,8 @@
                     </ul>
                 </div>
             </div>
-            <a href="#"><button type="button" class="btn btn-primary">Back to home</button>
+            <a href="/WebBanAo/home"><button type="button" class="btn btn-primary">Back to home</button></a>
+
 
         </div>
         <!-- Edit Modal HTML -->
@@ -145,6 +146,7 @@
                 </div>
             </div>
         </div>
+                            
         <!-- Edit Modal HTML -->
         
         <div id="editEmployeeModal" class="modal fade">
