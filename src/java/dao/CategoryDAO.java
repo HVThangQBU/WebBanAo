@@ -60,7 +60,7 @@ public class CategoryDAO {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,category_name);
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
+        } catch (Exception e) { 
         }
     }
 }
