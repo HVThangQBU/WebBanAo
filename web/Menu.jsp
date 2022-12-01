@@ -8,12 +8,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <style>
     .dropbtn {
-  background-color: #4CAF50;
+  background-color: #343a40!important;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
   cursor: pointer;
+  margin-right: 30px;
 }
 
 .dropdown {
@@ -58,18 +59,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
                 
             <ul class="navbar-nav m-auto">
-                <c:if test="${sessionScope.account != null}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Hello ${sessionScope.account.getUserName()}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="LogoutServlet">Logout</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="OrderServlet">Order</a>
-                    </li>
-                    
-                </c:if>
+               
                 <c:if test="${sessionScope.account == null }">
                     <li class="nav-item">
                         <a class="nav-link" href="LoginServlet">Login</a>
@@ -87,9 +77,11 @@
                                <a class="nav-link" href="ManagerProductServlet">Manager Product</a>
                                      <a class="nav-link" href="ManagerCategoryServlet">Manager Category  </a>
                        </c:if>
+                     
                     </div>
                 </div>
                      </c:if>
+               <a class="nav-link" href="OrderServlet">Order</a>
             
 
             <form action="SearchServlet" method="post" class="form-inline my-2 my-lg-0">
@@ -106,6 +98,21 @@
                     <span class="badge badge-light">3</span>
                 </a>
             </form>
+                            <c:if test="${sessionScope.account != null}">
+                    <div class="dropdown">
+                        
+                <button class="dropbtn">Hello ${sessionScope.account.getUserName()}</button>
+                    <div class="dropdown-content">
+                      <a class="nav-link" href="ManagerAccountServlet">Manager Account</a>
+                       <a class="nav-link" href="LogoutServlet">Logout</a>
+                      
+                      
+                      
+                       
+                     
+                    </div>
+                </div>
+                     </c:if>
         </div>
     </div>
 </nav>
