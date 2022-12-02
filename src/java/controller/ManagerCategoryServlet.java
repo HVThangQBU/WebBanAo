@@ -4,8 +4,11 @@
  */
 package controller;
 
+import dao.CategoryDAO;
+import entity.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,20 +34,20 @@ public class ManagerCategoryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ManagerCategoryServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ManagerCategoryServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            System.out.println("ccon cá bên b? ao");
-            System.out.println("jaha");
-        }
+//        try ( PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet ManagerCategoryServlet</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet ManagerCategoryServlet at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//            System.out.println("ccon cá bên b? ao");
+//            System.out.println("jaha");
+//        }
     
     }
     
@@ -61,7 +64,16 @@ public class ManagerCategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+     //   processRequest(request, response);
+        CategoryDAO categoryDAO = new CategoryDAO();
+        List<Category> categoryList = categoryDAO.getAllCategory();
+        request.setAttribute("categoryList", categoryList);
+        request.getRequestDispatcher("ManagerCategory.jsp").forward(request, response);
+        String action = request.getParameter("action");
+        if (action.equalsIgnoreCase("addCategory")) {
+            String name = request.getParameter("name");
+            categoryDAO.insertCategory(name);   
+        }
     }
 
     /**
@@ -75,7 +87,8 @@ public class ManagerCategoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+    //    processRequest(request, response);
+    
     }
 
     /**
