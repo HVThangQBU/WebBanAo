@@ -33,17 +33,17 @@
             }
         </style>
     <body>
-          <a class="navbar-brand" href="/WebBanAo/home">Áo</a>
+          <a class="navbar-brand" href="/WebBanAo/home">Trang Chủ</a>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Account</b></h2>
+                            <h2>Quản lý <b>Tài khoản</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addAccountModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteallAccountModal" class="btn btn-danger deleteAllAccount" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href="#addAccountModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm Tài Khoản Mới</span></a>
+                            <a href="#deleteallAccountModal" class="btn btn-danger deleteAllAccount" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Xóa</span></a>						
                         </div>
                     </div>
                 </div>
@@ -57,10 +57,10 @@
                                 </span>
                             </th>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>PassWord</th>
-                            <th>Sell</th>
-                            <th>Admin</th>
+                            <th>Tên</th>
+                            <th>Mật Khẩu</th>
+                            <th>Người Bán</th>
+                            <th>Quản Trị Viên</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,7 +94,7 @@
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <div class="hint-text">Hiển thị <b>5</b> trên <b>25</b>mục</div>
                     <ul class="pagination">
                         <li class="page-item disabled"><a href="#">Previous</a></li>
                         <li class="page-item"><a href="#" class="page-link">1</a></li>
@@ -106,7 +106,7 @@
                     </ul>
                 </div>
             </div>
-            <a href="/WebBanAo/home"><button type="button" class="btn btn-primary">Back to home</button></a>
+            <a href="/WebBanAo/home"><button type="button" class="btn btn-primary">Quay Lại</button></a>
 
         </div>
         <!-- Edit Modal HTML -->
@@ -115,40 +115,40 @@
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=addAccount" method="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Add Account</h4>
+                            <h4 class="modal-title">Thêm Tài Khoản</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Tên</label>
                                 <input name="name" type="text" class="form-control" ">
                             </div>
                             <div class="form-group">
-                                <label>PassWord</label>
+                                <label>Mật Khẩu</label>
                                 <input name="password" type="text" class="form-control" ">
                             </div>
                             <div class="form-group">
                            
                                  <td>
-                                    <lable>Sell</lable>
-                                    <input type="radio"  name="sell" value="1">
-                                    <lable>user</lable>
+                                    <lable>Quản Trị Viên</lable>
+                                    <input type="radio"  name="admin" value="1">
+                                    <lable>Người Dùng</lable>
                                     <input type="radio" name="sell" value="0">
                                 </td>
                             </div>
                             <div class="form-group">
                                 <td>
-                                    <lable>admin</lable>
-                                    <input type="radio"  name="admin" value="1">
-                                    <lable>user</lable>
+                                    <lable>Người Bán</lable>
+                                    <input type="radio"  name="sell" value="1">
+                                    <lable>Người Dùng</lable>
                                     <input type="radio" name="admin" value="0">
                                 </td>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" class="btn btn-success" value="Thêm">
                         </div>
                     </form>
                 </div>
@@ -161,7 +161,7 @@
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=editAccount" method="post">
                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit Account</h4>
+                            <h4 class="modal-title">Sửa Tài Khoản/h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -170,35 +170,35 @@
                                 <input id="input_Id" name="id" type="text" class="form-control" ">
                             </div>
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Tên</label>
                                 <input id="input_name" name="name" type="text" class="form-control"">
                             </div>
                             <div class="form-group">
-                                <label>PassWord</label>
+                                <label>Mật Khẩu </label>
                                 <input id="input_password" name="password" type="text" class="form-control"">
                             </div>
                             <div class="form-group">
                            
                                  <td>
-                                    <lable>Sell</lable>
+                                    <lable>Người Bán </lable>
                                     <input type="radio"  name="sell" value="1">
-                                    <lable>user</lable>
+                                    <lable>Người Dùng</lable>
                                     <input type="radio" name="sell" value="0">
                                 </td>
                             </div>
                             <div class="form-group">
                                 <td>
-                                    <lable>admin</lable>
+                                    <lable>Quản Trị Viên</lable>
                                     <input type="radio"  name="admin" value="1">
-                                    <lable>user</lable>
+                                    <lable>Người Dùng</lable>
                                     <input type="radio" name="admin" value="0">
                                 </td>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" id="btn-submit-edit" class="btn btn-info" value="Save">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" id="btn-submit-edit" class="btn btn-info" value="Lưu">
                         </div>
                     </form>
                 </div>
@@ -210,16 +210,16 @@
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=deleteAccount" method ="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Account</h4>
+                            <h4 class="modal-title">Xóa Tài Khoản</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            <p>Bạn có chắc chắn muốn xóa các Bản ghi này không?</p>
+                            <p class="text-warning"><small>Hành động này không thể được hoàn tác.</small></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" class="btn btn-danger" value="Xóa">
                         </div>
                     </form>
                 </div>
@@ -231,16 +231,16 @@
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=deleteAllAccount" method ="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Account  </h4>
+                            <h4 class="modal-title">Xóa tài Khoản  </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            <p>Bạn có chắc chắn muốn xóa các Bản ghi này không?</p>
+                            <p class="text-warning"><small>Hành động này không thể được hoàn tác</small></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" form="myform" class="btn btn-danger" value="Delete">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" form="myform" class="btn btn-danger" value="Xóa">
                         </div>
                     </form>
                 </div>
