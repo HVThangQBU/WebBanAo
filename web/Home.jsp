@@ -70,7 +70,7 @@
             function loadMore() {
                 var amount = document.getElementsByClassName("product_amount").length;
                 $.ajax({
-                    url: "/WebQuanLyBanHang/LoadMoreServlet",
+                    url: "/WebBanAo/LoadMoreServlet",
                     type: "get", //send it through get method
                     data: {
                         exits: amount
