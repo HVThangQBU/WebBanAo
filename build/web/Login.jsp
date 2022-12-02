@@ -24,7 +24,7 @@
     <body>
         <div id="logreg-forms">
             <form class="form-signin" action="LoginServlet" method="post">
-                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>
                 <div class="alert alert-${alert}" role="alert">
                     ${message}
                 </div>

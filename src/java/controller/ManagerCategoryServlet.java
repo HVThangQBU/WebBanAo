@@ -4,6 +4,7 @@
  */
 package controller;
 
+import com.google.gson.Gson;
 import dao.CategoryDAO;
 import entity.Category;
 import java.io.IOException;
@@ -64,15 +65,23 @@ public class ManagerCategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+           response.setContentType("text/html;charset=UTF-8");
      //   processRequest(request, response);
         CategoryDAO categoryDAO = new CategoryDAO();
-        List<Category> categoryList = categoryDAO.getAllCategory();
-        request.setAttribute("categoryList", categoryList);
-        request.getRequestDispatcher("ManagerCategory.jsp").forward(request, response);
         String action = request.getParameter("action");
-        if (action.equalsIgnoreCase("addCategory")) {
-            String name = request.getParameter("name");
-            categoryDAO.insertCategory(name);   
+        if (action == null) {
+           
+            List<Category> categoryList = categoryDAO.getAllCategory();
+            request.setAttribute("categoryList", categoryList);
+            request.getRequestDispatcher("ManagerCategory.jsp").forward(request, response);
+        }
+        else 
+        if (action.equalsIgnoreCase("editCategory")) {
+            String id = request.getParameter("aid");
+            request.setCharacterEncoding("UTF-8");              
+            Category category = categoryDAO.getCategoryById(id);               
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(category));
         }
     }
 
@@ -88,7 +97,20 @@ public class ManagerCategoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     //    processRequest(request, response);
-    
+      request.setCharacterEncoding("UTF-8"); 
+        CategoryDAO categoryDAO = new CategoryDAO();
+        String action = request.getParameter("action");
+        if (action.equalsIgnoreCase("addCategory")) {
+            String name = request.getParameter("name");
+            categoryDAO.insertCategory(name);   
+        }
+        else 
+        if (action.equalsIgnoreCase("editCategory")) {
+            String id = request.getParameter("id");
+            String name = request.getParameter("name");
+            categoryDAO.updateCategory(name,id);
+        }
+           response.sendRedirect("ManagerCategoryServlet");
     }
 
     /**

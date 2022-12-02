@@ -63,4 +63,32 @@ public class CategoryDAO {
         } catch (Exception e) { 
         }
     }
+    public void updateCategory(String cateString, String id) {
+        String query = "UPDATE `webbanhangjsp`.`category` SET `cname` = ? WHERE (`cid` = ?)";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, cateString);
+            preparedStatement.setString(2, id);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    public Category getCategoryById(String id) {
+        String query = "SELECT * FROM webbanhangjsp.category where cid = ?";
+        Category category = new Category();
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int idd = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                category = new Category(idd, name);
+            }
+        } catch (Exception e) {
+        }
+        return category;
+    }
 }

@@ -76,7 +76,7 @@
                                 <td></td>
                                 <td>
 <!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
-                                    <button type="button" class="btn-editAccount" data-teol="${category.getId()}" class="edit" data-toggle="modal" data-target="#editAccountModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
+                                    <button type="button" class="btn-editCategory" data-teol="${category.getId()}" class="edit" data-toggle="modal" data-target="#editAccountModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
                                     <button type="button" data-teol="${category.getId()}" class="delete deleteAccount" data-toggle="modal" data-target="#deleteAccountModal"><i class="material-icons" data-toggle="tooltip" title="Delete"  >&#xE872;</i></button>
                                 </td>
                             </tr>
@@ -128,42 +128,20 @@
         <div id="editAccountModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="ManagerAccountServlet?action=editAccount" method="post">
+                    <form action="ManagerCategoryServlet?action=editCategory" method="post">
                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit Account</h4>
+                            <h4 class="modal-title">Chỉnh sửa loại sản phẩm</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                              <div class="form-group">
                                 <label>Id</label>
-                                <input id="input_Id" name="id" type="text" class="form-control" ">
+                                <input id="input_Id" name="id" type="hidden" class="form-control" ">
                             </div>
                             <div class="form-group">
                                 <label>Name</label>
                                 <input id="input_name" name="name" type="text" class="form-control"">
                             </div>
-                            <div class="form-group">
-                                <label>PassWord</label>
-                                <input id="input_password" name="password" type="text" class="form-control"">
-                            </div>
-                            <div class="form-group">
-                           
-                                 <td>
-                                    <lable>Sell</lable>
-                                    <input type="radio"  name="sell" value="1">
-                                    <lable>user</lable>
-                                    <input type="radio" name="sell" value="0">
-                                </td>
-                            </div>
-                            <div class="form-group">
-                                <td>
-                                    <lable>admin</lable>
-                                    <input type="radio"  name="admin" value="1">
-                                    <lable>user</lable>
-                                    <input type="radio" name="admin" value="0">
-                                </td>
-                            </div>
-
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -177,7 +155,7 @@
         <div id="deleteAccountModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="ManagerAccountServlet?action=deleteAccount" method ="post">
+                    <form action="ManagerCategoryServlet?action=deleteAccount" method ="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Delete Account</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -224,12 +202,12 @@
  
 
         $(document).ready(function(){
-            $('.btn-editAccount').on('click', function(){
+            $('.btn-editCategory').on('click', function(){
                 //$("#editEmployeeModal").modal();
                 var teol = $(this).data("teol");
                 console.log(teol);
                 $.ajax({
-                    url: '/WebBanAo/ManagerAccountServlet?action=editAccount',
+                    url: '/WebBanAo/ManagerCategoryServlet?action=editCategory',
                     type: 'GET',
                     data: {aid: teol},
                 })
@@ -237,13 +215,7 @@
                     console.log(response);
         
                     $('#input_Id').attr('value', response.id);
-                    $('#input_name').attr('value', response.userName);
-   
-                    $('#input_password').attr('value', response.password);
-
-                     $("input[name=sell][value=" + response.isSell + "]").prop('checked', true);
-                     $("input[name=admin][value=" + response.isSell + "]").prop('checked', true);
-                
+                    $('#input_name').attr('value', response.name);
                 });
             });
             $('.deleteAccount').on('click', function(){
@@ -251,7 +223,7 @@
                 var teol = $(this).data("teol");
                 console.log(teol);
                 $.ajax({
-                    url: '/WebBanAo/ManagerAccountServlet?action=deleteAccount',
+                    url: '/WebBanAo/ManagerCategoryServlet?action=deleteAccount',
                     type: 'POST',
                     data: {aid: teol},
                 })
