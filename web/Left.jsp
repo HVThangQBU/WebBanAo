@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="col-sm-3">
     <div class="card bg-light mb-3">
-        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Loại sản phẩm</div>
         <ul class="list-group category_block">
             <c:forEach items="${categoryList}" var="category">
                 <li class="list-group-item text-white ${tagCid == category.id ? "active" : "" }"><a href="CategoryServlet?cid=${category.id}">${category.name}</a></li>
@@ -16,7 +16,7 @@
         </ul>
     </div>
     <div class="card bg-light mb-3">
-        <div class="card-header bg-success text-white text-uppercase">Last product</div>
+        <div class="card-header bg-success text-white text-uppercase">Sản phẩm mới</div>
         <div class="card-body">
             <img class="img-fluid" src="${product.image}" />
             <h5 class="card-title">${product.pname}</h5>

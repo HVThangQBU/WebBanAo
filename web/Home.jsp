@@ -24,13 +24,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <nav aria-label="breadcrumb">
+                        <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="Home.jsp">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Category</a></li>
+                                <li class="breadcrumb-item">Trang chủ<a href="Home.jsp"></a></li>
+                                <li class="breadcrumb-item"><a href="#">Loại sản phẩm</a></li>
                                 <li class="breadcrumb-item active" aria-current="#">Sub-category</li>
                             </ol>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                                                 <p class="btn btn-danger btn-block">${product.price} $</p>
                                             </div>
                                             <div class="col">
-                                                <a href="DetailProductServlet?productid=${product.id}" class="btn btn-success btn-block">Add to cart</a>
+                                                <a href="DetailProductServlet?productid=${product.id}" class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@
                             </div>
                         </c:forEach>
                     </div>
-                    <button onclick="loadMore()" class="btn btn-primary" type="button">LoadMore</button>
+                    <button onclick="loadMore()" class="btn btn-primary" type="button">Xem thêm</button>
                 </div>
 
             </div>
