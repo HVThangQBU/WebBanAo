@@ -49,10 +49,10 @@ public class ManagerProductServlet extends HttpServlet {
             request.setAttribute("productList", productList);     
         }
         else {
-         List<Product> productList = productDAO.getProductsBySellId(String.valueOf(id));
-        request.setAttribute("productList", productList);
+            List<Product> productList = productDAO.getProductsBySellId(String.valueOf(id));
+            request.setAttribute("productList", productList);
         }
-         List<Category> categoryList = categoryDAO.getAllCategory();
+        List<Category> categoryList = categoryDAO.getAllCategory();
         request.setAttribute("categoryList", categoryList);     
         request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
 

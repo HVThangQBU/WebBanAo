@@ -91,4 +91,18 @@ public class CategoryDAO {
         }
         return category;
     }
+    public int deleteCategory(String id) {
+        int n = 0;
+        String query = "delete from webbanhangjsp.category where cid = ?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            n = preparedStatement.executeUpdate();
+          
+        } catch (Exception e) {
+        }
+        return n;
+    }
 }
+  
