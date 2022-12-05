@@ -11,7 +11,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Order</title>
+        <title>Quản Lý Đơn Hàng</title>
 <!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -40,7 +40,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2> <b>Order</b></h2>
+                            <h2> <b>Quản lý Đơn Hàng</b></h2>
                         </div>
                         <!--                        <div class="col-sm-6">
                                                     <a href="#"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
@@ -51,15 +51,15 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Order Id</th>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Phone</th>
+                            <th>Mã Đơn Hàng</th>
+                            <th>Tên</th>
+                            <th>Địa Chỉ Nhà</th>
+                            <th>Số Điện Thoại</th>
                             <th>Email</th>       
-                            <th>Total Price</th>
-                            <th>Order_status</th>
-                            <th>date order</th>
-                            <th>shipped date</th>
+                            <th>Tổng Giá</th>
+                            <th>Tình Trạng Đơn Hàng</th>
+                            <th>Ngày Đặt Hàng</th>
+                            <th>Ngày Vận Chuyển</th>
                             <th>Xem</th>
                         </tr>
                     </thead>
@@ -122,10 +122,10 @@
                                    <c:choose>
                                         <c:when test="${sessionScope.account.getIsAdmin() == 1}">
                                             <td> <button class="btn btn-success" type="submit">Cap nhat </button></td>
-                                              <td><a href="ManagerOrderDetail?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>
+                                              <td><a href="ManagerOrderDetail?idOrder=${order.getId_order()}">Xem Chi Tiết</a></td>
                                         </c:when>
                                         <c:otherwise>
-                                         <td><a href="OrderDetailServlet?idOrder=${order.getId_order()}">Xem Chi Tiet</a></td>
+                                         <td><a href="OrderDetailServlet?idOrder=${order.getId_order()}">Xem Chi Tiết</a></td>
                                          </c:otherwise>
                                     </c:choose>  
                                         </form>
@@ -134,7 +134,7 @@
                     </tbody>
                 </table>  
             </div>
-
+            <a href="/WebBanAo/home"><button type="button" class="btn btn-primary">Quay Lại</button></a>
         </div>
         <script src="js/manager.js" type="text/javascript"></script>
 
