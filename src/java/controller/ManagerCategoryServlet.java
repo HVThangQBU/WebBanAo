@@ -110,6 +110,14 @@ public class ManagerCategoryServlet extends HttpServlet {
             String name = request.getParameter("name");
             categoryDAO.updateCategory(name,id);
         }
+         else 
+        if (action.equalsIgnoreCase("deleteCategory")) {
+            String id = request.getParameter("aid");
+          
+            categoryDAO.deleteCategory(id);
+        }
+        
+        
            response.sendRedirect("ManagerCategoryServlet");
     }
 

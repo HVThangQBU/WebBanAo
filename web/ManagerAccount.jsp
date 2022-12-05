@@ -226,7 +226,7 @@
             </div>
         </div>
         
-        <div id="deleteallAccountModal" class="modal fade">
+        <div id="" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=deleteAllAccount" method ="post">

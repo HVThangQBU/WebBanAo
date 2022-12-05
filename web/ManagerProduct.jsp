@@ -27,17 +27,17 @@
             }
         </style>
     <body>
-               <a class="navbar-brand" href="/WebBanAo/home">Áo</a>
+               <a class="navbar-brand" href="/WebBanAo/home">Trang Chủ</a>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Product</b></h2>
+                            <h2>Quản Lý Tài Khoản</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm Sản Phẩm Mới</span></a>
+                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Xóa</span></a>						
                         </div>
                     </div>
                 </div>
@@ -51,10 +51,10 @@
                                 </span>
                             </th>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Actions</th>
+                            <th>Tên</th>
+                            <th>Hình Ảnh</th>
+                            <th>Giá</th>
+                            <th>Mô Tả</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,30 +71,30 @@
                                 <td>
                                     <img src="${product.getImage()}">
                                 </td>
-                                <td>${product.getPrice()} $</td>
+                                <td>${product.getPrice()}VNĐ</td>
                                 <td>
 <!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
-                                    <button class="btn-edit" data-teol="${product.getId()}" class="edit" data-toggle="modal" data-target="#editEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                                    <a href="DeleteProductServlet?pid=${product.getId()}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <button class="btn-edit" data-teol="${product.getId()}" class="edit" data-toggle="modal" data-target="#editEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></button>
+                                    <a href="DeleteProductServlet?pid=${product.getId()}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <div class="hint-text">Hiển Thị <b>5</b> Trên <b>25</b> Mục</div>
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
+                        <li class="page-item disabled"><a href="#">Trang Trước</a></li>
                         <li class="page-item"><a href="#" class="page-link">1</a></li>
                         <li class="page-item"><a href="#" class="page-link">2</a></li>
                         <li class="page-item active"><a href="#" class="page-link">3</a></li>
                         <li class="page-item"><a href="#" class="page-link">4</a></li>
                         <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        <li class="page-item"><a href="#" class="page-link">Tiếp Theo</a></li>
                     </ul>
                 </div>
             </div>
-            <a href="/WebBanAo/home"><button type="button" class="btn btn-primary">Back to home</button></a>
+            <a href="/WebBanAo/home"><button type="button" class="btn btn-primary">Quay Lại</button></a>
 
 
         </div>
@@ -104,32 +104,32 @@
                 <div class="modal-content">
                     <form action="AddProductServlet" method="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
+                            <h4 class="modal-title">Thêm Sản Phẩm</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Tên Sản Phẩm</label>
                                 <input name="name" type="text" class="form-control" value="${Product.getPname()}">
                             </div>
                             <div class="form-group">
-                                <label>Image</label>
+                                <label>Hình Ảnh</label>
                                 <input name="image" type="text" class="form-control" value="${Product.getImage()}">
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
+                                <label>Giá</label>
                                 <input name="price" type="text" class="form-control" value="${Product.getPrice()}">
                             </div>
                             <div class="form-group">
-                                <label>Title</label>
+                                <label>Tiêu Đề</label>
                                 <textarea name="title" class="form-control" required>${Product.getTitle()}</textarea>
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>Mô Tả</label>
                                 <textarea name="description" class="form-control" required>${Product.getDescription()}</textarea>
                             </div>
                             <div class="form-group">
-                                <label>Category</label>
+                                <label>Loại</label>
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${categoryList}" var="category">
                                         <option value="${category.getId()}">${category.getName()}</option>
@@ -139,8 +139,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" class="btn btn-success" value="Thêm">
                         </div>
                     </form>
                 </div>
@@ -154,7 +154,7 @@
                 <div class="modal-content">
                     <form action="EditProductServlet" method="post">
                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit Product</h4>
+                            <h4 class="modal-title">Sửa Sản Phẩm</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -163,27 +163,27 @@
                                 <input  id="input_Id"  type="hidden" name="id" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Tên Sản Phẩm </label>
                                 <input id="input_name" name="name" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Image</label>
+                                <label>Hình ẢNh</label>
                                 <input id="input_image"name="image" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
+                                <label>Giá</label>
                                 <input id="input_price" name="price" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Title</label>
+                                <label>Tiêu Đề</label>
                                 <textarea id="input_title" name="title" class="form-control" required></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>Mô Tả</label>
                                 <textarea id="description" name="description" class="form-control" required></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Category</label>
+                                <label>Loại</label>
                                 <select id="select_category" name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${categoryList}" var="category">
                                         <option class="category-option" value="${category.getId()}">${category.getName()}</option>
@@ -192,29 +192,30 @@
                             </div>
 
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" id="btn-submit-edit" class="btn btn-info" value="Save">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" id="btn-submit-edit" class="btn btn-info" value="Lưu">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        
         <!-- Delete Modal HTML -->
         <div id="deleteEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Product</h4>
+                            <h4 class="modal-title">Xóa Sản Phẩm</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            <p>Bạn có chắc chắn muốn xóa các Bản ghi này không?</p>
+                            <p class="text-warning"><small>Hành động này không thể được hoàn tác.</small></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" class="btn btn-danger" value="Xóa">
                         </div>
                     </form>
                 </div>

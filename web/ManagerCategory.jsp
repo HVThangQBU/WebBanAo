@@ -26,7 +26,7 @@
             }
         </style>
     <body>
-          <a class="navbar-brand" href="/WebBanAo/home">Áo</a>
+          <a class="navbar-brand" href="/WebBanAo/home">Trang Chủ</a>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -76,8 +76,8 @@
                                 <td></td>
                                 <td>
 <!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
-                                    <button type="button" class="btn-editCategory" data-teol="${category.getId()}" class="edit" data-toggle="modal" data-target="#editAccountModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                                    <button type="button" data-teol="${category.getId()}" class="delete deleteAccount" data-toggle="modal" data-target="#deleteAccountModal"><i class="material-icons" data-toggle="tooltip" title="Delete"  >&#xE872;</i></button>
+                                    <button type="button" class="btn-editCategory" data-teol="${category.getId()}" class="edit" data-toggle="modal" data-target="#editAccountModal"><i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></button>
+                                    <button type="button" data-teol="${category.getId()}" class="delete deleteCategory" data-toggle="modal" data-target="#deleteCategoryModal"><i class="material-icons" data-toggle="tooltip" title="Xóa"  >&#xE872;</i></button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -85,19 +85,19 @@
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <div class="hint-text">Hiển Thị <b>5</b> Trên  <b>25</b> Mục</div>
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
+                        <li class="page-item disabled"><a href="#">Trang trước</a></li>
                         <li class="page-item"><a href="#" class="page-link">1</a></li>
                         <li class="page-item"><a href="#" class="page-link">2</a></li>
                         <li class="page-item active"><a href="#" class="page-link">3</a></li>
                         <li class="page-item"><a href="#" class="page-link">4</a></li>
                         <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        <li class="page-item"><a href="#" class="page-link">Tiếp Theo</a></li>
                     </ul>
                 </div>
             </div>
-            <a href="/WebBanAo/home"><button type="button" class="btn btn-primary">Back to home</button></a>
+            <a href="/WebBanAo/home"><button type="button" class="btn btn-primary">Quay Lại</button></a>
 
         </div>
         <!-- Edit Modal HTML -->
@@ -116,8 +116,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" class="btn btn-success" value="AThêm">
                         </div>
                     </form>
                 </div>
@@ -139,34 +139,34 @@
                                 <input id="input_Id" name="id" type="hidden" class="form-control" ">
                             </div>
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Tên</label>
                                 <input id="input_name" name="name" type="text" class="form-control"">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" id="btn-submit-edit" class="btn btn-info" value="Save">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" id="btn-submit-edit" class="btn btn-info" value="Lưu">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <!-- Delete Modal HTML -->
-        <div id="deleteAccountModal" class="modal fade">
+        <div id="deleteCategoryModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="ManagerCategoryServlet?action=deleteAccount" method ="post">
+                    <form action="ManagerCategoryServlet?action=deleteCategory" method ="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Account</h4>
+                            <h4 class="modal-title">Xóa Sản Phẩm</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            <p>Bạn có chắc chắn muốn xóa các Bản ghi này không?</p>
+                            <p class="text-warning"><small>Hành động này không thể được hoàn tác.</small></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" class="btn btn-danger" value="Xóa">
                         </div>
                     </form>
                 </div>
@@ -178,16 +178,16 @@
                 <div class="modal-content">
                     <form action="ManagerAccountServlet?action=deleteAllAccount" method ="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Account  </h4>
+                            <h4 class="modal-title">Xóa Sản Phẩm </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            <p>Bạn có chắc chắn muốn xóa các Bản ghi này không?</p>
+                            <p class="text-warning"><small>Hành động này không thể được hoàn tác.</small></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" form="myform" class="btn btn-danger" value="Delete">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                            <input type="submit" form="myform" class="btn btn-danger" value="Xóa">
                         </div>
                     </form>
                 </div>
@@ -218,10 +218,10 @@
                     $('#input_name').attr('value', response.name);
                 });
             });
-            $('.deleteAccount').on('click', function(){
+            $('.deleteCategory').on('click', function(){
                 //$("#editEmployeeModal").modal();
                 var teol = $(this).data("teol");
-                console.log(teol);
+                console.log("cac",teol);
                 $.ajax({
                     url: '/WebBanAo/ManagerCategoryServlet?action=deleteAccount',
                     type: 'POST',
