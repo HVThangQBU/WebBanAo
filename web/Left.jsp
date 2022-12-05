@@ -21,7 +21,7 @@
             <img class="img-fluid" src="${product.image}" />
             <h5 class="card-title">${product.pname}</h5>
             <p class="card-text">${product.title}</p>
-            <p class="bloc_left_price">${product.price} $</p>
+            <p class="bloc_left_price">${product.price} VNÐ</p>
         </div>
     </div>
 </div>

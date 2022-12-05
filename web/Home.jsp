@@ -48,7 +48,7 @@
                                         <p class="card-text show_txt">${product.title}</p>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-danger btn-block">${product.price} $</p>
+                                                <p class="btn btn-danger btn-block">${product.price} VNÐ</p>
                                             </div>
                                             <div class="col">
                                                 <a href="DetailProductServlet?productid=${product.id}" class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
