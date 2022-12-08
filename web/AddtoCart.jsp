@@ -26,7 +26,8 @@
             }
         </style>
     <body>
-        <a class="navbar-brand" href="/WebBanAo/home">AO</a>
+<!--        <a class="navbar-brand" href="/WebBanAo/home">AO</a>-->
+ <jsp:include page="MenuManage.jsp"></jsp:include>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">

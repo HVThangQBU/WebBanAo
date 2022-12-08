@@ -26,13 +26,14 @@
             }
         </style>
     <body>
-        <a class="navbar-brand" href="/WebBanAo/home">Shoes</a>
+<!--        <a class="navbar-brand" href="/WebBanAo/home">Shoes</a>-->
+         <jsp:include page="MenuManage.jsp"></jsp:include>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2> <b>Order Product</b></h2>
+                            <h2> <b>Chi Tiet Don Hang</b></h2>
                         </div>
                         <!--                        <div class="col-sm-6">
                                                     <a href="#"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>

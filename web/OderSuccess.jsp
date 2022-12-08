@@ -35,7 +35,8 @@
     </head>
     <body>
          <%--<jsp:include page="Menu.jsp"></jsp:include>--%>
-           <a class="navbar-brand" href="/WebBanAo/home">Trang Chu</a>
+<!--           <a class="navbar-brand" href="/WebBanAo/home">Trang Chu</a>-->
+            <jsp:include page="MenuManage.jsp"></jsp:include>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
