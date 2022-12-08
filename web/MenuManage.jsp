@@ -47,15 +47,19 @@
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+.navbar-nav{display:inline-block}
 </style>
 <!--begin of menu-->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="" style="display:inline-block;width:100%">
     <div class="container">
+        <div>
         <a class="navbar-brand" href="/WebBanAo/home">Ảo ma Store </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        </div>
+        <div>
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-
+        </button>-->
+        </div>
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
                 
             <ul class="navbar-nav m-auto">
@@ -84,8 +88,8 @@
                <a class="nav-link" href="OrderServlet">Đơn hàng</a>
             
 
-            <form action="SearchServlet" method="post" class="form-inline my-2 my-lg-0">
-                <div class="input-group input-group-sm">
+            <form style="display:inline-block" action="SearchServlet" method="post" class="form-inline my-2 my-lg-0">
+                <div class="" style="display:inline-flex">
                     <input oninput="SearchByName(this)" value="${txtSearch}" name="txtSearch" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-secondary btn-number">
@@ -99,7 +103,7 @@
                 </a>
             </form>
                             <c:if test="${sessionScope.account != null}">
-                    <div class="dropdown">
+                    <div class="dropdown" style="display:inline-block">
                         
                 <button class="dropbtn">Xin chào ${sessionScope.account.getUserName()}</button>
                     <div class="dropdown-content">
@@ -116,10 +120,3 @@
         </div>
     </div>
 </nav>
-<!--<section class="jumbotron text-center">
-    <div class="container">
-        <h1 class="jumbotron-heading">Siêu thị giày chất lượng cao</h1>
-        <p class="lead text-muted mb-0">Uy tín tạo nên thương hiệu với hơn 10 năm cung cấp các sản phầm giày nhập từ Trung Quốc</p>
-    </div>
-</section>-->
-<!--end of menu-->

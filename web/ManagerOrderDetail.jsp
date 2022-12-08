@@ -29,8 +29,8 @@
             }
         </style>
     <body>
-        <jsp:include page="Menu.jsp"></jsp:include>
-        <a class="navbar-brand" href="/WebBanAo/home">Áo</a>
+        
+        <a class="navbar-brand" href="/WebBanAo/home">Trang Chu</a>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">

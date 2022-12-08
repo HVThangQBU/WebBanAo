@@ -26,7 +26,8 @@
             }
         </style>
     <body>
-          <a class="navbar-brand" href="/WebBanAo/home">Trang Chủ</a>
+<!--          <a class="navbar-brand" href="/WebBanAo/home">Trang Chủ</a>-->
+ <jsp:include page="MenuManage.jsp"></jsp:include>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -223,7 +224,7 @@
                 var teol = $(this).data("teol");
                 console.log("cac",teol);
                 $.ajax({
-                    url: '/WebBanAo/ManagerCategoryServlet?action=deleteAccount',
+                    url: '/WebBanAo/ManagerCategoryServlet?action=deleteCategory',
                     type: 'POST',
                     data: {aid: teol},
                 })

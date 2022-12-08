@@ -112,9 +112,9 @@ public class ManagerCategoryServlet extends HttpServlet {
         }
          else 
         if (action.equalsIgnoreCase("deleteCategory")) {
+            int n = 0;
             String id = request.getParameter("aid");
-          
-            categoryDAO.deleteCategory(id);
+            n = categoryDAO.deleteCategory(id);
         }
         
         
