@@ -34,7 +34,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Quản Lý San Pham</b></h2>
+                            <h2>Quản Lý Sản Phẩm</b></h2>
                         </div>
                         <div class="col-sm-6">
                             <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm Sản Phẩm Mới</span></a>
@@ -55,7 +55,7 @@
                             <th>Tên</th>
                             <th>Hình Ảnh</th>
                             <th>Giá</th>
-                            <th>Mô Tả</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,9 +74,10 @@
                                 </td>
                                 <td>${product.getPrice()}VNĐ</td>
                                 <td>
-<!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
+                         <!-- <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>--> 
                                     <button class="btn-edit" data-teol="${product.getId()}" class="edit" data-toggle="modal" data-target="#editEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></button>
                                     <a href="DeleteProductServlet?pid=${product.getId()}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i></a>
+                               
                                 </td>
                             </tr>
                         </c:forEach>

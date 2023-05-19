@@ -30,17 +30,17 @@
         </style>
     <body>
         
-        <a class="navbar-brand" href="/WebBanAo/home">Trang Chu</a>
+   <jsp:include page="MenuManage.jsp"></jsp:include>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2> <b>Manager Order Detail Product</b></h2>
+                            <h2> <b>Quản lý đơn hàng</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>                       
+                            <a href="#"  class="" data-toggle="modal"></a>
+                            <a href="#" class="" data-toggle="modal"></a>                       
                         </div>
                     </div>
                 </div>

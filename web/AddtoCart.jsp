@@ -33,11 +33,11 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Order <b>Product</b></h2>
+                            <h2>Giỏ<b>Hàng</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href="#" ></a>
+                            <a href="#"></a>						
                         </div>
                     </div>
                 </div>
@@ -51,11 +51,11 @@
                                 </span>
                             </th>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Actions</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,10 +81,10 @@
                                 <input type="hidden" name="id" value="${cart.value.getProduct().getId()}">
                                 <td>
                                     <!--                                    <a href="#editEmployeeModal"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
-                                    <button class="btn btn-success" type="submit">Cap nhat </button>
+                                    <button class="btn btn-success" type="submit">Cập nhật</button>
                                 </td>
                             </form>
-                            <td><a href="OrderServlet">Thanh toan</a></td>
+                            <td><a href="OrderServlet">Thanh toán</a></td>
                             </tr>
                         </c:forEach>
                     </c:if>
@@ -92,14 +92,14 @@
                 </table>
                 <div>
                     <form action="AddtoCartServlet?action=checkInfo" method="post" class="form-signup">
-                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Thong tin Dat Hang</h1>
+                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Thông tin đặt hàng</h1>
                         <input type="hidden" name="id" value="${sessionScope.account.getId()}">
                         <input name="name" type="text"  class="form-control" placeholder="Ten tai khoan" required="" autofocus="" value="${sessionScope.account.getUserName()}">
                         <input name="address" type="text" class="form-control" placeholder="Nhap Dia chi" required autofocus="">
                         <input name="email" type="email" class="form-control" placeholder="Nhap Email" required autofocus="">
                         <input name="phone" type="text"  class="form-control" placeholder="Nhap So Dien Thoai" required autofocus="">
 
-                        <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i>Dat Hang</button>
+                        <button class="btn btn-primary btn-block" type="submit">Đặt hàng</button>
                         <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
                     </form>
                 </div>

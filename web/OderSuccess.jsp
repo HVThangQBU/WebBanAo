@@ -42,7 +42,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2> <b>Quản lý Đơn Hàng</b></h2>
+                            <h2> <b>Đơn Hàng</b></h2>
                         </div>
                         <!--                        <div class="col-sm-6">
                                                     <a href="#"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
@@ -62,8 +62,8 @@
                             <th>Tình Trạng Đơn Hàng</th>
                             <th>Ngày Đặt Hàng</th>
                             <th>Ngày Vận Chuyển</th>
-                            <th>Cap Nhat</th>
-                            <th>Xem</th>
+                            <th>Cập nhât</th>
+                            <th>Xem chi tiết</th>
                         
                         </tr>
                     </thead>
@@ -125,7 +125,7 @@
                                
                                    <c:choose>
                                         <c:when test="${sessionScope.account.getIsAdmin() == 1}">
-                                            <td> <button class="btn btn-success" type="submit">Cap nhat </button></td>
+                                            <td> <button class="btn btn-success" type="submit">Cập nhật</button></td>
                                               <td><a href="ManagerOrderDetail?idOrder=${order.getId_order()}">Xem Chi Tiết</a></td>
                                         </c:when>
                                         <c:otherwise>
